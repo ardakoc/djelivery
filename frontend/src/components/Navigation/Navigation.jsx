@@ -15,7 +15,6 @@ import NavLogo from './NavLogo';
 // Icons
 import Compass from '../Icons/Compass';
 import Location from '../Icons/Location/Location';
-import LocationSearchIcon from '../Icons/Location/LocationSearchIcon';
 
 export default function Navigation() {
   return (
