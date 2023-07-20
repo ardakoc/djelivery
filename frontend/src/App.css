@@ -40,3 +40,27 @@
 .read-the-docs {
   color: #888;
 } */
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+* {
+  font-family: 'Quicksand', sans-serif;
+}
+
+/* body {
+  background-color: #e6fcf5;
+} */
+
+.navbar {
+  box-shadow: rgba(0,0,0,0.15) 0 1px 1px;
+  background-color: #e6fcf5;
+  color: #c3fae8;
+}
+
+.brand-logo {
+  color: #12b886;
+}
+
+.brand-logo:last-child {
+  color: #12b886;
+}
