@@ -18,7 +18,7 @@ import Location from '../Icons/Location/Location';
 
 export default function Navigation() {
   return (
-    <Navbar expand="lg" className="navbar" fixed="top" >
+    <Navbar expand="lg" className="navbar" sticky="top" >
       <Container>
         <NavLogo />
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -33,7 +33,7 @@ export default function Navigation() {
               title={
                 <div style={{ display: "inline-block", paddingRight: "8px", }}>
                   <Compass />
-                  WHAT TO EAT / DRINK?
+                  <span style={{ paddingLeft: "8px" }}>WHAT TO EAT / DRINK?</span>
                 </div>
                 }
                 id="navbarScrollingDropdown"
@@ -45,7 +45,7 @@ export default function Navigation() {
               title={
                 <div style={{ display: "inline-block", paddingRight: "8px" }}>
                   <Location />
-                  CHOOSE LOCATION
+                  <span style={{ paddingLeft: "8px" }}>CHOOSE LOCATION</span>
                 </div>
                 }
                 id="navbarScrollingDropdown"
