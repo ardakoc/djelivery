@@ -1,55 +1,35 @@
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-} */
-
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@100;200;300;400;500;600;700&display=swap');
 
 * {
   font-family: 'DM Sans', sans-serif;
 }
 
-/* body {
-  background-color: #e6fcf5;
+body {
+  overflow-x: hidden;
+}
+
+/* Bootstrap Classes */
+
+.form-control:focus,
+input[type="checkbox"]:focus {
+  box-shadow: none !important;
+  border: 1px solid #12b786 !important;
+  outline: 0 none;
+}
+
+/* input[type="checkbox"] {
+  border: 1px solid #12b786;
 } */
+input[type="checkbox"]:checked {
+  background-color: #12b786;
+  border: 1px solid #12b786;
+}
+
+input[type="checkbox"]:focus {
+  border: none;
+}
+
+/* Custom Classes */
 
 .navbar {
   box-shadow: rgba(0,0,0,0.15) 0 1px 1px;
@@ -60,4 +40,18 @@
 .menu-item-sm {
   font-size: 12px;
   padding-top: 4px;
+}
+
+.banner {
+  position: relative;
+  z-index: 1;  
+}
+
+.hero-form {
+  position: absolute;
+  z-index: 2;
+  width: 30% !important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
