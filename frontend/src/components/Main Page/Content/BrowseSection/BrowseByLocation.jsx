@@ -6,6 +6,7 @@ import Card from "react-bootstrap/Card";
 
 // Custom Components
 import LocationCard from "./LocationCard";
+import Button from "react-bootstrap/esm/Button";
 
 export default function BrowseByLocation() {
   return (
@@ -32,7 +33,7 @@ export default function BrowseByLocation() {
                   <LocationCard location="Mavisehir" placeCount="27" />
                   <LocationCard location="Atakent" placeCount="25" />
                   <LocationCard location="Fahrettin Altay" placeCount="14" />
-                </Card.Body>              
+                </Card.Body>
               </Col>
               <Col>
                 <Card.Body>
@@ -40,18 +41,24 @@ export default function BrowseByLocation() {
                   <LocationCard location="Basmane" placeCount="12" />
                   <LocationCard location="Balcova" placeCount="9" />
                   <LocationCard location="Narlidere" placeCount="8" />
-                </Card.Body>              
+                </Card.Body>
               </Col>
               <Col>
                 <Card.Body>
                   <LocationCard location="Guzelbahce" placeCount="5" />
                   <LocationCard location="Urla" placeCount="5" />
-                </Card.Body>              
+                </Card.Body>
               </Col>
+              <Button
+                variant="success"
+                style={{ borderTopLeftRadius: "0", borderTopRightRadius: "0" }}
+              >
+                See more locations
+              </Button>
             </Row>
           </Card>
         </Row>
       </Container>
     </div>
-  )
+  );
 }
