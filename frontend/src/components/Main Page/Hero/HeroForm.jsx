@@ -2,21 +2,19 @@
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/esm/Container';
 import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/esm/Row';
 import Col from 'react-bootstrap/esm/Col';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 // Icons
-import Location from '../Icons/Location/Location';
-import Restaurant from '../Icons/Restaurant';
+import Location from '../../Icons/Location/Location';
+import Restaurant from '../../Icons/Restaurant';
 
 export default function HeroForm() {
   return (
     <Container className="hero-form">
       <h1>Best restaurants in your city</h1>
-      {/* <h1>Choose your food from your favorite restaurants</h1> */}
       <h6>Pay quickly and securely by credit card, at the door or with food cards.</h6>
-      <Form>
+      <Form className="mt-4">
         <Col xs="auto">
           <Form.Label htmlFor="inlineFormInputGroup" visuallyHidden>
             Restaurant Name
@@ -30,9 +28,9 @@ export default function HeroForm() {
         </Col>
         <Col xs="auto">
           <Form.Label htmlFor="inlineFormInputGroup" visuallyHidden>
-            Username
+            Location
           </Form.Label>
-          <InputGroup className="mb-2">
+          <InputGroup className="mb-3">
             <InputGroup.Text>
               <Location />
             </InputGroup.Text>
@@ -40,7 +38,7 @@ export default function HeroForm() {
           </InputGroup>
         </Col>
         <Col xs="auto">
-          <Button type="submit" className="mb-2 btn-success">
+          <Button type="submit" className="btn-success">
             Search
           </Button>
         </Col>

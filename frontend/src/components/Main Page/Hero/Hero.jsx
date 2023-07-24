@@ -5,7 +5,7 @@ import HeroForm from './HeroForm';
 export default function Hero() {
   return (
     <>
-      <Row className="hero">
+      <Row className="hero-section">
         <HeroForm />
       </Row>
     </>

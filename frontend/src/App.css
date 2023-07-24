@@ -8,6 +8,19 @@ body {
   overflow-x: hidden;
 }
 
+input::placeholder {
+  font-weight: 200;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600 !important;
+}
+
 /* Bootstrap Classes */
 
 .form-control:focus,
@@ -17,9 +30,6 @@ input[type="checkbox"]:focus {
   outline: 0 none;
 }
 
-/* input[type="checkbox"] {
-  border: 1px solid #12b786;
-} */
 input[type="checkbox"]:checked {
   background-color: #12b786;
   border: 1px solid #12b786;
@@ -42,8 +52,8 @@ input[type="checkbox"]:focus {
   padding-top: 4px;
 }
 
-.hero {  
-  padding-top: 200px;
+.hero-section {  
+  padding-top: 250px;
   padding-bottom: 150px;
   margin-bottom: 0px;
   background: url(assets/img/hero-banner.jpg) no-repeat center / cover;
@@ -51,4 +61,8 @@ input[type="checkbox"]:focus {
 
 .hero-form {
   width: 30% !important;
+}
+
+.browse-section {
+  background-color: #c3fae8;
 }
