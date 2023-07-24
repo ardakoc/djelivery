@@ -63,6 +63,15 @@ input[type="checkbox"]:focus {
   width: 30% !important;
 }
 
-.browse-section {
+.page-section {
   background-color: #c3fae8;
+}
+
+.location-link {
+  text-decoration: none;
+  color: #333;  
+}
+
+.location-link:hover {
+  color: #000;
 }

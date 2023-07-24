@@ -3,6 +3,8 @@ import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import Card from "react-bootstrap/Card";
+
+// Custom Components
 import BurgerIcon from "../../../Icons/Foods/BurgerIcon";
 import PizzaIcon from "../../../Icons/Foods/PizzaIcon";
 import ChickenIcon from "../../../Icons/Foods/ChickenIcon";
@@ -11,10 +13,10 @@ import SandwichIcon from "../../../Icons/Foods/SandwichIcon";
 import CoffeeIcon from "../../../Icons/Foods/CoffeeIcon";
 import FoodCard from "./FoodCard";
 
-export default function BrowseSection() {
+export default function BrowseByCuisine() {
   return (
-    <div className="browse-section">
-      <Container className="pt-5 pb-5">
+    <div className="page-section">
+      <Container className="pt-5 b-5">
         <Row>
           <Col>
             <h2>Browse by Cuisine</h2>
