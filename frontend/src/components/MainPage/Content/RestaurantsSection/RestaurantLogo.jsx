@@ -10,17 +10,16 @@ export default function RestaurantLogo(props) {
         href="#"
         className="square border rounded-3 d-flex align-items-center justify-content-center"
         style={{
-          width: "125px",
-          height: "125px",
-          gap: "12px",
+          width: props.width || "125px",
+          height: props.height || "125px",
           background: "none",
         }}
       >
         <Image
           src={props.photo}
           style={{
-            maxWidth: "125px",
-            maxHeight: "125px",
+            maxWidth: props.width || "125px",
+            maxHeight: props.width || "125px",
           }}
         />
       </Button>
