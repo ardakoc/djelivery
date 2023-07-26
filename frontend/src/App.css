@@ -75,3 +75,12 @@ input[type="checkbox"]:focus {
 .location-link:hover {
   color: #000;
 }
+
+.card-border-none {
+  border: none !important;
+}
+
+.size-125 {
+  width: 125px !important;
+  height: 125px !important;
+}
