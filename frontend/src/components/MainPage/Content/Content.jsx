@@ -9,7 +9,7 @@ export default function Content(props) {
     <div className={props.background === "true" && "section-bg"}>
       <Container className={props.className || "pt-5 pb-5"}>
         <Row>
-          <Col>
+          <Col className={props.titleCenter && "text-center"}>
             <h2>{props.title}</h2>
             <p>{props.description}</p>
           </Col>
