@@ -11,6 +11,7 @@ import Content from "../Content";
 export default function BrowseByLocation() {
   return (    
     <Content
+      className="pb-5"
       title="Popular Localities In Izmir"
       description="Explore restaurants by locality"
       background="true"
