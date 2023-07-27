@@ -28,6 +28,7 @@ export default function RestaurantCard(props) {
               props.status === "open" && "open"
             } ${props.status === "close" && "close"}`}
           >
+            <em class="bookmark-ribbon"></em>
             {props.status === "open" && "Open"}
             {props.status === "close" && "Close"}
           </span>
