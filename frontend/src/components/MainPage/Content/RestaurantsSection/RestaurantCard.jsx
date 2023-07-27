@@ -10,6 +10,7 @@ import RestaurantLogo from "./RestaurantLogo";
 import FavoriteFilled from "../../../Icons/Favorite/FavoriteFilled";
 import FavoriteRegular from "../../../Icons/Favorite/FavoriteRegular";
 import Rating from "../../../Icons/Rating/Rating";
+import RestaurantStatus from "./RestaurantStatus";
 
 export default function RestaurantCard(props) {
   return (
@@ -23,15 +24,8 @@ export default function RestaurantCard(props) {
               height="75px"
             />
           </Row>
-          <span
-            className={`restaurant-status ${
-              props.status === "open" && "open"
-            } ${props.status === "close" && "close"}`}
-          >
-            <em class="bookmark-ribbon"></em>
-            {props.status === "open" && "Open"}
-            {props.status === "close" && "Close"}
-          </span>
+          {props.open && <RestaurantStatus open />}
+          {props.close && <RestaurantStatus close />}
         </Col>
         <Col xs={7}>
           <Card.Title style={{ fontSize: "16px" }} >Restaurant name</Card.Title>
