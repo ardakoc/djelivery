@@ -15,12 +15,22 @@ export default function RestaurantCard(props) {
   return (
     <Card>
       <Row className="p-3">
-        <Col className="text-center m-3">
-          <RestaurantLogo
-            photo="https://upload.wikimedia.org/wikipedia/commons/2/2e/Burger_King_logo_2020.png"
-            width="75px"
-            height="75px"
-          />
+        <Col className="text-center">
+          <Row>
+            <RestaurantLogo
+              photo="https://upload.wikimedia.org/wikipedia/commons/2/2e/Burger_King_logo_2020.png"
+              width="75px"
+              height="75px"
+            />
+          </Row>
+          <span
+            className={`restaurant-status ${
+              props.status === "open" && "open"
+            } ${props.status === "close" && "close"}`}
+          >
+            {props.status === "open" && "Open"}
+            {props.status === "close" && "Close"}
+          </span>
         </Col>
         <Col xs={7}>
           <Card.Title>Restaurant name</Card.Title>

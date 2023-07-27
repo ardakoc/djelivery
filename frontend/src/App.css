@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@100;200;300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@100;200;300;400;500;600;700&display=swap");
 
 * {
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 body {
@@ -42,7 +42,7 @@ input[type="checkbox"]:focus {
 /* Custom Classes */
 
 .navbar {
-  box-shadow: rgba(0,0,0,0.15) 0 1px 1px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0 1px 1px;
   background-color: #e6fcf5;
   color: #c3fae8;
 }
@@ -52,7 +52,7 @@ input[type="checkbox"]:focus {
   padding-top: 4px;
 }
 
-.hero-section {  
+.hero-section {
   padding-top: 250px;
   padding-bottom: 150px;
   margin-bottom: 0px;
@@ -69,7 +69,7 @@ input[type="checkbox"]:focus {
 
 .location-link {
   text-decoration: none;
-  color: #333;  
+  color: #333;
 }
 
 .location-link:hover {
@@ -84,3 +84,73 @@ input[type="checkbox"]:focus {
   width: 125px !important;
   height: 125px !important;
 }
+
+/* Restaurant Status */
+.restaurant-status {
+  position: absolute;
+  bottom: 15px;
+  left: -11px;
+  padding: 3px 10px;
+  line-height: normal;
+  background: #3ab54b;
+  font-size: 10px;
+  color: #fff;
+  display: block;
+  text-transform: uppercase;
+  min-height: 20px;
+  min-width: 52px;
+  text-align: center;
+}
+.restaurant-status {
+  left: -10px;
+}
+.restaurant-status:before {
+  width: 0;
+  height: 0;
+  border-top: 10px solid #239132;
+  border-left: 10px solid transparent;
+  content: "";
+  left: 0;
+  position: absolute;
+  bottom: -10px;
+}
+.restaurant-status.close {
+  background: #ed1b24;
+  opacity: 1;
+  cursor: auto;
+  font-weight: normal;
+  float: none;
+  text-shadow: none;
+}
+.restaurant-status.close:before {
+  border-top: 10px solid #c91018;
+}
+.restaurant-status .bookmarkRibbon {
+  width: 10px;
+  height: 0px;
+  border-top: 10px solid #3ab54b;
+  border-bottom: 10px solid #3ab54b;
+  border-right: 5px solid transparent;
+  position: absolute;
+  top: 0;
+  right: -6px;
+}
+.restaurant-status.close .bookmarkRibbon {
+  border-top: 10px solid #ed1b24;
+  border-bottom: 10px solid #ed1b24;
+}
+
+
+/*Restaurant Status*/
+/* .user-dashboard .listing.simple li {
+  padding-bottom: 30px;
+  border-bottom: 1px solid #ebedf3;
+  margin-bottom: 30px;
+  padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+.user-dashboard .listing.simple li:last-child {
+  border-bottom: none;
+  padding-bottom: 0px;
+} */
