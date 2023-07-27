@@ -17,26 +17,26 @@ export default function PopularRestaurants() {
       body={
         <Card.Body>
           <Row className="p-2">
-            <Col>
+            <Col md={6} sm={12} className="mb-3">
               <RestaurantCard status="open" />
             </Col>
-            <Col>
+            <Col md={6} sm={12}>
               <RestaurantCard status="open" />
             </Col>
           </Row>
           <Row className="p-2">
-            <Col>
+            <Col md={6} sm={12} className="mb-3">
               <RestaurantCard status="open" />
             </Col>
-            <Col>
+            <Col md={6} sm={12}>
               <RestaurantCard status="close" />
             </Col>
           </Row>
           <Row className="p-2">
-            <Col>
+            <Col md={6} sm={12} className="mb-3">
               <RestaurantCard status="close" />
             </Col>
-            <Col>
+            <Col md={6} sm={12}>
               <RestaurantCard status="close" />
             </Col>
           </Row>

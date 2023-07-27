@@ -14,8 +14,8 @@ import Rating from "../../../Icons/Rating/Rating";
 export default function RestaurantCard(props) {
   return (
     <Card>
-      <Row className="p-3">
-        <Col className="text-center">
+      <Row className="p-4">
+        <Col className="text-center mb-4">
           <Row>
             <RestaurantLogo
               photo="https://upload.wikimedia.org/wikipedia/commons/2/2e/Burger_King_logo_2020.png"
@@ -34,12 +34,14 @@ export default function RestaurantCard(props) {
           </span>
         </Col>
         <Col xs={7}>
-          <Card.Title>Restaurant name</Card.Title>
-          <Card.Subtitle>
+          <Card.Title style={{ fontSize: "16px" }} >Restaurant name</Card.Title>
+          <Card.Subtitle style={{ fontSize: "12px" }}>
             <Rating />
           </Card.Subtitle>
-          <Card.Text>Food types</Card.Text>
-          <Card.Text>30 minutes</Card.Text>
+          <Card.Text style={{ fontSize: "12px" }} className="mt-2 mb-1">
+            Food types
+            <Card.Text>30 minutes</Card.Text>
+          </Card.Text>
         </Col>
         <Col className="d-flex justify-content-end pe-4">
           <FavoriteRegular />
