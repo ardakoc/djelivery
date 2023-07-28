@@ -3,6 +3,7 @@ import Navigation from './components/Navigation/Navigation'
 import Hero from './components/MainPage/Hero/Hero'
 import BrowseSection from './components/MainPage/Content/BrowseSection/BrowseSection'
 import RestaurantsSection from './components/MainPage/Content/RestaurantsSection/RestaurantsSection'
+import Testimonials from './components/MainPage/Testimonials/Testimonials'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Hero />
       <BrowseSection />
       <RestaurantsSection />
+      <Testimonials />
     </>
   )
 }
