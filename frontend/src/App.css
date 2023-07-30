@@ -85,6 +85,10 @@ input[type="checkbox"]:focus {
   height: 125px !important;
 }
 
+.footer {
+  background-color: #2e3331;
+}
+
 /* Restaurant Status */
 .restaurant-status {
   position: absolute;

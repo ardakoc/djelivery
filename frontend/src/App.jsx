@@ -4,6 +4,7 @@ import Hero from './components/MainPage/Hero/Hero'
 import BrowseSection from './components/MainPage/Content/BrowseSection/BrowseSection'
 import RestaurantsSection from './components/MainPage/Content/RestaurantsSection/RestaurantsSection'
 import Testimonials from './components/MainPage/Testimonials/Testimonials'
+import Footer from './components/MainPage/Footer/Footer'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <BrowseSection />
       <RestaurantsSection />
       <Testimonials />
+      <Footer />
     </>
   )
 }
