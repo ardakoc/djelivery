@@ -89,6 +89,15 @@ input[type="checkbox"]:focus {
   background-color: #2e3331;
 }
 
+.footer-menu h6 {
+  font-size: 14px;
+}
+
+.footer-menu p {
+  font-weight: 200;
+  font-size: 14px;
+}
+
 /* Restaurant Status */
 .restaurant-status {
   position: absolute;

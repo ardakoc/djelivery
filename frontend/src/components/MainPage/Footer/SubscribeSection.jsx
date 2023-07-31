@@ -7,7 +7,7 @@ import Form from "react-bootstrap/Form";
 
 export default function SubscribeSection() {
   return (
-    <Container className="pt-5 pb-5">
+    <Container className="pt-5">
         <Row>
           <Col className="text-center">
             <h5 style={{ color: "#9cccbd", letterSpacing: "3px" }}>
