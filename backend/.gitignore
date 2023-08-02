@@ -72,8 +72,6 @@ cover/
 *.mo
 
 # Django stuff:
-#  Code styling:
-.flake8
 
 # Flask stuff:
 instance/
