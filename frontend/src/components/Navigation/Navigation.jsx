@@ -2,7 +2,6 @@
 import { useState } from "react";
 
 // Bootstrap Components
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -11,6 +10,8 @@ import Form from "react-bootstrap/Form";
 
 // Custom Components
 import FoodMenu from "./FoodMenu/FoodMenu";
+import LoginRegisterModal from "../Modals/LoginRegisterModal";
+import PrimaryButton from "../Buttons/PrimaryButton";
 
 // Logo
 import NavLogo from "./NavLogo";
@@ -18,7 +19,6 @@ import NavLogo from "./NavLogo";
 // Icons
 import Compass from "../Icons/Compass";
 import Location from "../Icons/Location/Location";
-import LoginRegisterModal from "../Modals/LoginRegisterModal";
 
 export default function Navigation() {
   const [showModal, setShowModal] = useState(false);
@@ -93,12 +93,7 @@ export default function Navigation() {
               >
                 LOGIN / REGISTER
               </Nav.Link>
-              <Button
-                className="btn-success fw-bold"
-                style={{ fontSize: "14px", letterSpacing: "-0.3px" }}
-              >
-                REGISTER RESTAURANT
-              </Button>
+              <PrimaryButton text="REGISTER RESTAURANT" />
             </Nav>
           </Navbar.Collapse>
         </Container>

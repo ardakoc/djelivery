@@ -5,11 +5,11 @@ import Card from "react-bootstrap/Card";
 
 // Custom Components
 import LocationCard from "./LocationCard";
-import Button from "react-bootstrap/esm/Button";
 import Content from "../Content";
+import PrimaryButton from "../../../Buttons/PrimaryButton";
 
 export default function BrowseByLocation() {
-  return (    
+  return (
     <Content
       className="pb-5"
       title="Popular Localities In Izmir"
@@ -47,12 +47,11 @@ export default function BrowseByLocation() {
               <LocationCard location="Urla" placeCount="5" />
             </Card.Body>
           </Col>
-          <Button
-            variant="success"
+          <PrimaryButton
+            text="See more locations"
             style={{ borderTopLeftRadius: "0", borderTopRightRadius: "0" }}
-          >
-            See more locations
-          </Button>
+            className="btn-success"
+          />
         </Row>
       }
     />

@@ -1,5 +1,4 @@
 // Bootstrap Components
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/esm/Container';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/esm/Col';
@@ -8,6 +7,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 // Icons
 import Location from '../../Icons/Location/Location';
 import Restaurant from '../../Icons/Restaurant';
+import PrimaryButton from '../../Buttons/PrimaryButton';
 
 export default function HeroForm() {
   return (
@@ -38,9 +38,7 @@ export default function HeroForm() {
           </InputGroup>
         </Col>
         <Col xs="auto">
-          <Button type="submit" className="btn-success">
-            Search
-          </Button>
+          <PrimaryButton text="SEARCH" />
         </Col>
       </Form>
     </Container>
