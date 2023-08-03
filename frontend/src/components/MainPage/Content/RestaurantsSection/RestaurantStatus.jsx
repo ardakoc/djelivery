@@ -5,7 +5,7 @@ export default function RestaurantStatus(props) {
         props.close && "close"
       }`}
     >
-      <em class="bookmark-ribbon"></em>
+      <em className="bookmark-ribbon"></em>
       {props.open && "Open"}
       {props.close && "Close"}
     </span>
