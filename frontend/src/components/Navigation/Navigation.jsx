@@ -10,9 +10,10 @@ import Form from "react-bootstrap/Form";
 
 // Custom Components
 import FoodMenu from "./FoodMenu/FoodMenu";
-import LoginModal from "../Modals/LoginModal";
 import PrimaryButton from "../Buttons/PrimaryButton";
+import LoginModal from "../Modals/LoginModal";
 import ForgotPasswordModal from "../Modals/ForgotPasswordModal";
+import RegisterModal from "../Modals/RegisterModal";
 
 // Logo
 import NavLogo from "./NavLogo";
@@ -23,21 +24,28 @@ import Location from "../Icons/Location/Location";
 
 export default function Navigation() {
   const [showModal, setShowModal] = useState(false);
+  const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
 
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => {
     setShowModal(true);
     setShowForgotPasswordModal(false);
+    setShowRegisterModal(false);
   };
 
-  const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
-
-  const handleCloseForgotPasswordModal = () => {
-    setShowForgotPasswordModal(false);
-  };
+  const handleCloseForgotPasswordModal = () => setShowForgotPasswordModal(false);
   const handleShowForgotPasswordModal = () => {
     setShowModal(false);
+    setShowRegisterModal(false);
     setShowForgotPasswordModal(true);
+  };
+
+  const handleCloseRegisterModal = () => setShowRegisterModal(false);
+  const handleShowRegisterModal = () => {
+    setShowModal(false);
+    setShowForgotPasswordModal(false);
+    setShowRegisterModal(true);
   };
 
   return (
@@ -116,10 +124,16 @@ export default function Navigation() {
         show={showModal}
         onHide={handleCloseModal}
         onClickForgotPassword={handleShowForgotPasswordModal}
+        onClickRegister={handleShowRegisterModal}
       />
       <ForgotPasswordModal
         show={showForgotPasswordModal}
         onHide={handleCloseForgotPasswordModal}
+        onClickBackToLoginPage={handleShowModal}
+      />
+      <RegisterModal
+        show={showRegisterModal}
+        onHide={handleCloseRegisterModal}
         onClickBackToLoginPage={handleShowModal}
       />
     </>

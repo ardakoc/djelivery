@@ -20,7 +20,7 @@ export default function SocialAuthModalSection() {
       <LoginWithButton
         appIcon={<X />}
         appName="X"
-        backgroundColor="#25ACED"
+        backgroundColor="#162126"
         color="#fff"
       />
       <LoginWithButton

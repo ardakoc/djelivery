@@ -39,7 +39,7 @@ export default function LoginForm(props) {
             Don't have an account?
             <ModalLink
               text="Register here!"
-              onClick=""
+              onClick={props.onClickRegister}
               style={{ color: "#000", padding: "0 0 0 4px" }}
             />
           </Nav>

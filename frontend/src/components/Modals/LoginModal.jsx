@@ -12,7 +12,7 @@ export default function LoginModal(props) {
         <Modal.Title>Login To Your Account</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <LoginForm onClickForgotPassword={props.onClickForgotPassword} />
+        <LoginForm onClickForgotPassword={props.onClickForgotPassword} onClickRegister={props.onClickRegister} />
         <SocialAuthModalSection />
       </Modal.Body>
     </Modal>
