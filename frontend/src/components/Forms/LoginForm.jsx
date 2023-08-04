@@ -1,6 +1,3 @@
-// React Hooks
-import { useState } from "react";
-
 // Bootstrap Components
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
@@ -13,7 +10,8 @@ import InputWithIcon from "../InputGroups/InputWithIcon";
 import Email from "../Icons/Email";
 import Password from "../Icons/Password";
 
-export default function LoginForm() {
+export default function LoginForm(props) { 
+
   return (
     <>
       <Form>
@@ -29,7 +27,10 @@ export default function LoginForm() {
         </Form.Group>
         <Form.Text>
           <Nav>
-            <Nav.Link style={{ color: "#000", padding: "0 0 16px 0" }}>
+            <Nav.Link
+              style={{ color: "#000", padding: "0 0 16px 0" }}
+              onClick={props.onClickForgotPassword}
+            >
               Forgot your password?
             </Nav.Link>
           </Nav>
@@ -38,7 +39,9 @@ export default function LoginForm() {
         <Form.Text>
           <Nav style={{ paddingTop: "16px" }}>
             Don't have an account?
-            <Nav.Link style={{ color: "#000", padding: "0 0 0 4px" }}>
+            <Nav.Link
+              style={{ color: "#000", padding: "0 0 0 4px" }}
+            >
               Register here!
             </Nav.Link>
           </Nav>

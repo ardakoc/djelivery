@@ -10,8 +10,9 @@ import Form from "react-bootstrap/Form";
 
 // Custom Components
 import FoodMenu from "./FoodMenu/FoodMenu";
-import LoginRegisterModal from "../Modals/LoginModal";
+import LoginModal from "../Modals/LoginModal";
 import PrimaryButton from "../Buttons/PrimaryButton";
+import ForgotPasswordModal from "../Modals/ForgotPasswordModal";
 
 // Logo
 import NavLogo from "./NavLogo";
@@ -19,13 +20,25 @@ import NavLogo from "./NavLogo";
 // Icons
 import Compass from "../Icons/Compass";
 import Location from "../Icons/Location/Location";
-import LoginModal from "../Modals/LoginModal";
 
 export default function Navigation() {
   const [showModal, setShowModal] = useState(false);
 
   const handleCloseModal = () => setShowModal(false);
-  const handleShowModal = () => setShowModal(true);
+  const handleShowModal = () => {
+    setShowModal(true);
+    setShowForgotPasswordModal(false);
+  };
+
+  const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
+
+  const handleCloseForgotPasswordModal = () => {
+    setShowForgotPasswordModal(false);
+  };
+  const handleShowForgotPasswordModal = () => {
+    setShowModal(false);
+    setShowForgotPasswordModal(true);
+  };
 
   return (
     <>
@@ -99,7 +112,16 @@ export default function Navigation() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <LoginModal show={showModal} onHide={handleCloseModal} />
+      <LoginModal
+        show={showModal}
+        onHide={handleCloseModal}
+        onClickForgotPassword={handleShowForgotPasswordModal}
+      />
+      <ForgotPasswordModal
+        show={showForgotPasswordModal}
+        onHide={handleCloseForgotPasswordModal}
+        onClickBackToLoginPage={handleShowModal}
+      />
     </>
   );
 }

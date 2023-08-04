@@ -18,7 +18,7 @@ export default function LoginModal(props) {
         <Modal.Title>Login To Your Account</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <LoginForm />
+        <LoginForm onClickForgotPassword={props.onClickForgotPassword} />
         <ModalSectionTitle text="Login With" />
         <LoginWithButton
           appIcon={<Facebook />}
