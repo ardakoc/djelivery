@@ -9,9 +9,9 @@ import InputWithIcon from "../InputGroups/InputWithIcon";
 // Icons
 import Email from "../Icons/Email";
 import Password from "../Icons/Password";
+import ModalLink from "../Link/ModalLink";
 
-export default function LoginForm(props) { 
-
+export default function LoginForm(props) {
   return (
     <>
       <Form>
@@ -27,23 +27,21 @@ export default function LoginForm(props) {
         </Form.Group>
         <Form.Text>
           <Nav>
-            <Nav.Link
-              style={{ color: "#000", padding: "0 0 16px 0" }}
+            <ModalLink
+              text="Forgot your password?"
               onClick={props.onClickForgotPassword}
-            >
-              Forgot your password?
-            </Nav.Link>
+            />
           </Nav>
         </Form.Text>
         <BlockButton text="LOG IN" />
         <Form.Text>
           <Nav style={{ paddingTop: "16px" }}>
             Don't have an account?
-            <Nav.Link
+            <ModalLink
+              text="Register here!"
+              onClick=""
               style={{ color: "#000", padding: "0 0 0 4px" }}
-            >
-              Register here!
-            </Nav.Link>
+            />
           </Nav>
         </Form.Text>
       </Form>

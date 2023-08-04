@@ -8,6 +8,7 @@ import InputWithIcon from "../InputGroups/InputWithIcon";
 
 // Icons
 import Email from "../Icons/Email";
+import ModalLink from "../Link/ModalLink";
 
 export default function ForgotPasswordModal(props) {
   return (
@@ -24,16 +25,14 @@ export default function ForgotPasswordModal(props) {
           type="email"
           className="mb-2 mt-2"
         />
-        <BlockButton text="SUBMIT" className="btn-success fw-bold mt-2" />
+        <BlockButton text="SUBMIT" className="btn-success fw-bold mt-2 mb-4" />
         <Nav>
-            <Nav.Link
-              style={{ color: "#000", padding: "0 0 16px 0" }}
-              onClick={props.onClickBackToLoginPage}
-              className="mt-4 pb-0"
-            >
-              Back to login page here
-            </Nav.Link>
-          </Nav>
+          <ModalLink
+            text="Back to login page here"
+            onClick={props.onClickBackToLoginPage}
+            style={{ color: "#000", padding: "0", fontSize: "14px" }}
+          />
+        </Nav>
       </Modal.Body>
     </Modal>
   );
