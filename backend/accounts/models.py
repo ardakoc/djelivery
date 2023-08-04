@@ -1,3 +1,5 @@
+import uuid as uuid_lib
+
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
@@ -42,6 +44,7 @@ class User(AbstractBaseUser):
         (2, 'Customer'),
     )
 
+    uuid = models.UUIDField(db_index=True, default=uuid_lib.uuid4, editable=False)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     username = models.CharField(max_length=50, unique=True)
@@ -86,14 +89,14 @@ class UserProfile(models.Model):
         blank=True,
         null=True
     )
-    adress_line_1 = models.CharField(max_length=50, blank=True, null=True)
-    adress_line_2 = models.CharField(max_length=50, blank=True, null=True)
-    country = models.CharField(max_length=50, blank=True, null=True)
-    state = models.CharField(max_length=50, blank=True, null=True)
-    city = models.CharField(max_length=50, blank=True, null=True)
-    pin_code = models.CharField(max_length=6, blank=True, null=True)
-    latitude = models.CharField(max_length=20, blank=True, null=True)
-    longitude = models.CharField(max_length=20, blank=True, null=True)
+    adress_line_1 = models.CharField(max_length=50, blank=True)
+    adress_line_2 = models.CharField(max_length=50, blank=True)
+    country = models.CharField(max_length=50, blank=True)
+    state = models.CharField(max_length=50, blank=True)
+    city = models.CharField(max_length=50, blank=True)
+    pin_code = models.CharField(max_length=6, blank=True)
+    latitude = models.CharField(max_length=20, blank=True)
+    longitude = models.CharField(max_length=20, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
