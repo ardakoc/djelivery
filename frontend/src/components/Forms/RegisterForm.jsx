@@ -13,19 +13,23 @@ import Email from "../Icons/Email";
 import Password from "../Icons/Password";
 import ModalLink from "../Link/ModalLink";
 import Name from "../Icons/Name";
+import Username from "../Icons/Username";
 
 export default function RegisterForm(props) {
   return (
     <>
-      <Form>
+      <Form>        
+        <Form.Group className="mb-3" controlId="formFirstName">
+          <InputWithIcon icon={<Name />} placeholder="First name" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formLastName">
+          <InputWithIcon icon={<Name />} placeholder="Last name" />
+        </Form.Group>
         <Form.Group className="mb-3" controlId="formEmail">
           <InputWithIcon icon={<Email />} placeholder="Email address" />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formName">
-          <InputWithIcon icon={<Name />} placeholder="Name" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formSurname">
-          <InputWithIcon icon={<Name />} placeholder="Surname" />
+        <Form.Group className="mb-3" controlId="formEmail">
+          <InputWithIcon icon={<Username />} placeholder="Username" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formPassword">
           <InputWithIcon
