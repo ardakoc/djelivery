@@ -10,7 +10,7 @@ import Form from "react-bootstrap/Form";
 
 // Custom Components
 import FoodMenu from "./FoodMenu/FoodMenu";
-import LoginRegisterModal from "../Modals/LoginRegisterModal";
+import LoginRegisterModal from "../Modals/LoginModal";
 import PrimaryButton from "../Buttons/PrimaryButton";
 
 // Logo
@@ -19,6 +19,7 @@ import NavLogo from "./NavLogo";
 // Icons
 import Compass from "../Icons/Compass";
 import Location from "../Icons/Location/Location";
+import LoginModal from "../Modals/LoginModal";
 
 export default function Navigation() {
   const [showModal, setShowModal] = useState(false);
@@ -98,7 +99,7 @@ export default function Navigation() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <LoginRegisterModal show={showModal} onHide={handleCloseModal} />
+      <LoginModal show={showModal} onHide={handleCloseModal} />
     </>
   );
 }

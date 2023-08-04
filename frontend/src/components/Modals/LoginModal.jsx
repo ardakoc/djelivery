@@ -2,7 +2,7 @@
 import Modal from "react-bootstrap/Modal";
 import LoginForm from "../Forms/LoginForm";
 
-export default function LoginRegisterModal(props) {
+export default function LoginModal(props) {
   return (
     <Modal show={props.show} onHide={props.onHide}>
       <Modal.Header closeButton>
