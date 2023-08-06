@@ -7,9 +7,11 @@ export default function InputWithIcon(props) {
     <InputGroup className={props.className || "mb-2"}>
       <InputGroup.Text>{props.icon}</InputGroup.Text>
       <Form.Control
-        id="inlineFormInputGroup"
+        name={props.name}
         placeholder={props.placeholder}
         type={props.type}
+        onChange={props.onChange}
+        value={props.defaultIfEmpty}
       />
     </InputGroup>
   );

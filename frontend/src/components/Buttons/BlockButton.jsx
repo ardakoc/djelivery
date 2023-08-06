@@ -9,6 +9,7 @@ export default function BlockButton(props) {
         style={props.style || { letterSpacing: "-0.3px" }}
         variant={props.variant || "success"}
         type={props.type || "submit"}
+        onClick={props.onClick}
       >
         {props.text}
       </Button>
