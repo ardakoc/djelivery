@@ -16,8 +16,15 @@ import Password from "../Icons/Password";
 import ModalLink from "../Link/ModalLink";
 import Name from "../Icons/Name";
 import Username from "../Icons/Username";
+import FormErrorText from "../Texts/FormErrorText";
 
 export default function RegisterForm(props) {
+  const [firstNameErrorMsg, setfirstNameErrorMsg] = useState("");
+  const [lastNameErrorMsg, setLastNameErrorMsg] = useState("");
+  const [emailErrorMsg, setEmailErrorMsg] = useState("");
+  const [usernameErrorMsg, setUsernameErrorMsg] = useState("");
+  const [passwordErrorMsg, setPasswordErrorMsg] = useState("");
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const user = {
@@ -27,11 +34,58 @@ export default function RegisterForm(props) {
       username: event.target.username.value,
       password: event.target.password.value,
     };
-    await axios.post("http://127.0.0.1:8000/api/users/", user).then((response) => {
-      console.log(response.data);
-    }).catch((error) => {
-      console.log(error)
-    });
+    await axios
+      .post("http://127.0.0.1:8000/api/users/", user)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        if ("first_name" in error.response.data) {
+          setfirstNameErrorMsg(
+            String(error.response.data["first_name"]).charAt(0).toUpperCase() +
+              String(error.response.data["first_name"]).slice(1)
+          );
+        }
+        else {
+          setfirstNameErrorMsg("");
+        }
+        if ("last_name" in error.response.data) {
+          setLastNameErrorMsg(
+            String(error.response.data["last_name"]).charAt(0).toUpperCase() +
+              String(error.response.data["last_name"]).slice(1)
+          );
+        }
+        else {
+          setLastNameErrorMsg("");
+        }
+        if ("email" in error.response.data) {
+          setEmailErrorMsg(
+            String(error.response.data["email"]).charAt(0).toUpperCase() +
+              String(error.response.data["email"]).slice(1)
+          );
+        }
+        else {
+          setEmailErrorMsg("");
+        }
+        if ("username" in error.response.data) {
+          setUsernameErrorMsg(
+            String(error.response.data["username"]).charAt(0).toUpperCase() +
+              String(error.response.data["username"]).slice(1)
+          );
+        }
+        else {
+          setUsernameErrorMsg("");
+        }
+        if ("password" in error.response.data) {
+          setPasswordErrorMsg(
+            String(error.response.data["password"]).charAt(0).toUpperCase() +
+              String(error.response.data["password"]).slice(1)
+          );
+        }
+        else {
+          setPasswordErrorMsg("");
+        }
+      });
   };
 
   return (
@@ -43,6 +97,7 @@ export default function RegisterForm(props) {
             icon={<Name />}
             placeholder="First name"
           />
+          <FormErrorText msg={firstNameErrorMsg} />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formLastName">
           <InputWithIcon
@@ -50,6 +105,7 @@ export default function RegisterForm(props) {
             icon={<Name />}
             placeholder="Last name"
           />
+          <FormErrorText msg={lastNameErrorMsg} />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formEmail">
           <InputWithIcon
@@ -57,6 +113,7 @@ export default function RegisterForm(props) {
             icon={<Email />}
             placeholder="Email address"
           />
+          <FormErrorText msg={emailErrorMsg} />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formUsername">
           <InputWithIcon
@@ -64,6 +121,7 @@ export default function RegisterForm(props) {
             icon={<Username />}
             placeholder="Username"
           />
+          <FormErrorText msg={usernameErrorMsg} />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formPassword">
           <InputWithIcon
@@ -72,6 +130,7 @@ export default function RegisterForm(props) {
             placeholder="*********"
             type="password"
           />
+          <FormErrorText msg={passwordErrorMsg} />
         </Form.Group>
         <div
           key={`default-checkbox`}

@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 
 export default function InputWithIcon(props) {
   return (
-    <InputGroup className={props.className || "mb-2"}>
+    <InputGroup className={props.className || "mb-2"} hasValidation>
       <InputGroup.Text>{props.icon}</InputGroup.Text>
       <Form.Control
         name={props.name}
@@ -13,6 +13,9 @@ export default function InputWithIcon(props) {
         onChange={props.onChange}
         value={props.defaultIfEmpty}
       />
+      <Form.Control.Feedback type="invalid">
+        {props.error}
+      </Form.Control.Feedback>
     </InputGroup>
   );
 }

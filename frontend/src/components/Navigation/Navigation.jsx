@@ -23,27 +23,27 @@ import Compass from "../Icons/Compass";
 import Location from "../Icons/Location/Location";
 
 export default function Navigation() {
-  const [showModal, setShowModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
 
-  const handleCloseModal = () => setShowModal(false);
-  const handleShowModal = () => {
-    setShowModal(true);
+  const handleCloseModal = () => setShowLoginModal(false);
+  const handleshowLoginModal = () => {
+    setShowLoginModal(true);
     setShowForgotPasswordModal(false);
     setShowRegisterModal(false);
   };
 
   const handleCloseForgotPasswordModal = () => setShowForgotPasswordModal(false);
   const handleShowForgotPasswordModal = () => {
-    setShowModal(false);
+    setShowLoginModal(false);
     setShowRegisterModal(false);
     setShowForgotPasswordModal(true);
   };
 
   const handleCloseRegisterModal = () => setShowRegisterModal(false);
   const handleShowRegisterModal = () => {
-    setShowModal(false);
+    setShowLoginModal(false);
     setShowForgotPasswordModal(false);
     setShowRegisterModal(true);
   };
@@ -111,7 +111,7 @@ export default function Navigation() {
               <Nav.Link
                 className="fw-bold"
                 style={{ fontSize: "14px", letterSpacing: "-0.3px" }}
-                onClick={handleShowModal}
+                onClick={handleshowLoginModal}
               >
                 LOGIN / REGISTER
               </Nav.Link>
@@ -121,7 +121,7 @@ export default function Navigation() {
         </Container>
       </Navbar>
       <LoginModal
-        show={showModal}
+        show={showLoginModal}
         onHide={handleCloseModal}
         onClickForgotPassword={handleShowForgotPasswordModal}
         onClickRegister={handleShowRegisterModal}
@@ -129,12 +129,12 @@ export default function Navigation() {
       <ForgotPasswordModal
         show={showForgotPasswordModal}
         onHide={handleCloseForgotPasswordModal}
-        onClickBackToLoginPage={handleShowModal}
+        onClickBackToLoginPage={handleshowLoginModal}
       />
       <RegisterModal
         show={showRegisterModal}
         onHide={handleCloseRegisterModal}
-        onClickBackToLoginPage={handleShowModal}
+        onClickBackToLoginPage={handleshowLoginModal}
       />
     </>
   );

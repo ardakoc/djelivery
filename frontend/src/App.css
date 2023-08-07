@@ -98,6 +98,12 @@ input[type="checkbox"]:focus {
   font-size: 14px;
 }
 
+.error-text {
+  font-size: 12px;
+  color: red;
+  margin-top: -6px;
+}
+
 /* Restaurant Status */
 .restaurant-status {
   position: absolute;
