@@ -3,12 +3,12 @@ import Row from "react-bootstrap/esm/Row";
 import Card from "react-bootstrap/Card";
 
 // Custom Components
-import BurgerIcon from "../../../Icons/Foods/BurgerIcon";
-import PizzaIcon from "../../../Icons/Foods/PizzaIcon";
-import ChickenIcon from "../../../Icons/Foods/ChickenIcon";
-import DessertIcon from "../../../Icons/Foods/DessertIcon";
-import SandwichIcon from "../../../Icons/Foods/SandwichIcon";
-import CoffeeIcon from "../../../Icons/Foods/CoffeeIcon";
+import BurgerIcon from "../../../../Icons/Foods/BurgerIcon";
+import PizzaIcon from "../../../../Icons/Foods/PizzaIcon";
+import ChickenIcon from "../../../../Icons/Foods/ChickenIcon";
+import DessertIcon from "../../../../Icons/Foods/DessertIcon";
+import SandwichIcon from "../../../../Icons/Foods/SandwichIcon";
+import CoffeeIcon from "../../../../Icons/Foods/CoffeeIcon";
 import FoodCard from "./FoodCard";
 import Content from "../Content";
 

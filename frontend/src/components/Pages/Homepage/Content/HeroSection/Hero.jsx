@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/esm/Container';
 import Row from "react-bootstrap/Row";
 
 // Custom Components
-import HeroSearchForm from '../../Forms/HeroSearchForm';
+import HeroSearchForm from '../../../../Forms/HeroSearchForm';
 
 export default function Hero() {
   return (

@@ -1,13 +1,13 @@
 // Icons
-import BurgerIcon from "../../Icons/Foods/BurgerIcon";
-import PizzaIcon from "../../Icons/Foods/PizzaIcon";
-import ChickenIcon from "../../Icons/Foods/ChickenIcon";
-import DessertIcon from "../../Icons/Foods/DessertIcon";
-import SandwichIcon from "../../Icons/Foods/SandwichIcon";
-import CoffeeIcon from "../../Icons/Foods/CoffeeIcon";
-import VegetarianIcon from "../../Icons/Foods/VegetarianIcon";
-import SaladIcon from "../../Icons/Foods/SaladIcon";
-import SeaFoodsIcon from "../../Icons/Foods/SeaFoodsIcon";
+import BurgerIcon from "../../../Icons/Foods/BurgerIcon";
+import PizzaIcon from "../../../Icons/Foods/PizzaIcon";
+import ChickenIcon from "../../../Icons/Foods/ChickenIcon";
+import DessertIcon from "../../../Icons/Foods/DessertIcon";
+import SandwichIcon from "../../../Icons/Foods/SandwichIcon";
+import CoffeeIcon from "../../../Icons/Foods/CoffeeIcon";
+import VegetarianIcon from "../../../Icons/Foods/VegetarianIcon";
+import SaladIcon from "../../../Icons/Foods/SaladIcon";
+import SeaFoodsIcon from "../../../Icons/Foods/SeaFoodsIcon";
 
 // Custom Components
 import FoodMenuItem from "./FoodMenuItem";

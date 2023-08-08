@@ -6,7 +6,7 @@ import Card from "react-bootstrap/Card";
 // Custom Components
 import LocationCard from "./LocationCard";
 import Content from "../Content";
-import PrimaryButton from "../../../Buttons/PrimaryButton";
+import PrimaryButton from "../../../../Buttons/PrimaryButton";
 
 export default function BrowseByLocation() {
   return (

@@ -7,9 +7,9 @@ import Row from "react-bootstrap/esm/Row";
 import RestaurantLogo from "./RestaurantLogo";
 
 // Icons
-import FavoriteFilled from "../../../Icons/Favorite/FavoriteFilled";
-import FavoriteRegular from "../../../Icons/Favorite/FavoriteRegular";
-import Rating from "../../../Icons/Rating/Rating";
+import FavoriteFilled from "../../../../Icons/Favorite/FavoriteFilled";
+import FavoriteRegular from "../../../../Icons/Favorite/FavoriteRegular";
+import Rating from "../../../../Icons/Rating/Rating";
 import RestaurantStatus from "./RestaurantStatus";
 
 export default function RestaurantCard(props) {

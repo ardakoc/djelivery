@@ -1,6 +1,6 @@
 // Bootstrap Components
 import Row from "react-bootstrap/esm/Row";
-import Content from "../Content/Content";
+import Content from "../Content";
 
 // Custom Components
 import Testimonial from "./Testimonial";

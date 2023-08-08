@@ -1,4 +1,4 @@
-import Logo from '../../assets/img/brand-logo.svg'
+import Logo from '../../../assets/img/brand-logo.svg'
 import Navbar from 'react-bootstrap/Navbar';
 
 export default function NavLogo() {

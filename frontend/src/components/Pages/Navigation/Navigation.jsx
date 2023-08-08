@@ -10,17 +10,17 @@ import Form from "react-bootstrap/Form";
 
 // Custom Components
 import FoodMenu from "./FoodMenu/FoodMenu";
-import PrimaryButton from "../Buttons/PrimaryButton";
-import LoginModal from "../Modals/LoginModal";
-import ForgotPasswordModal from "../Modals/ForgotPasswordModal";
-import RegisterModal from "../Modals/RegisterModal";
+import PrimaryButton from "../../Buttons/PrimaryButton";
+import LoginModal from "../../Modals/LoginModal";
+import ForgotPasswordModal from "../../Modals/ForgotPasswordModal";
+import RegisterModal from "../../Modals/RegisterModal";
 
 // Logo
 import NavLogo from "./NavLogo";
 
 // Icons
-import Compass from "../Icons/Compass";
-import Location from "../Icons/Location/Location";
+import Compass from "../../Icons/Compass";
+import Location from "../../Icons/Location/Location";
 
 export default function Navigation() {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -30,6 +30,7 @@ export default function Navigation() {
 
   const handleCloseModal = () => setShowLoginModal(false);
   const handleshowLoginModal = () => {
+    setSignedUp(false);
     setShowLoginModal(true);
     setShowForgotPasswordModal(false);
     setShowRegisterModal(false);
@@ -37,6 +38,7 @@ export default function Navigation() {
 
   const handleCloseForgotPasswordModal = () => setShowForgotPasswordModal(false);
   const handleShowForgotPasswordModal = () => {
+    setSignedUp(false);
     setShowLoginModal(false);
     setShowRegisterModal(false);
     setShowForgotPasswordModal(true);
@@ -44,6 +46,7 @@ export default function Navigation() {
 
   const handleCloseRegisterModal = () => setShowRegisterModal(false);
   const handleShowRegisterModal = () => {
+    setSignedUp(false);
     setShowLoginModal(false);
     setShowForgotPasswordModal(false);
     setShowRegisterModal(true);
