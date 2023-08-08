@@ -36,7 +36,8 @@ export default function Navigation() {
     setShowRegisterModal(false);
   };
 
-  const handleCloseForgotPasswordModal = () => setShowForgotPasswordModal(false);
+  const handleCloseForgotPasswordModal = () =>
+    setShowForgotPasswordModal(false);
   const handleShowForgotPasswordModal = () => {
     setSignedUp(false);
     setShowLoginModal(false);
@@ -57,7 +58,7 @@ export default function Navigation() {
     setShowLoginModal(true);
     setShowForgotPasswordModal(false);
     setShowRegisterModal(false);
-  }
+  };
 
   return (
     <>
@@ -126,7 +127,7 @@ export default function Navigation() {
               >
                 LOGIN / REGISTER
               </Nav.Link>
-              <PrimaryButton text="REGISTER RESTAURANT" />
+              <PrimaryButton href="/register-restaurant" text="REGISTER RESTAURANT" />
             </Nav>
           </Navbar.Collapse>
         </Container>
