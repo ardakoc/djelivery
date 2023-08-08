@@ -3,7 +3,7 @@ import Navbar from 'react-bootstrap/Navbar';
 
 export default function NavLogo() {
   return (
-    <Navbar.Brand href="#" className="fw-bold fs-3 brand-logo" style={{color: "#12b886"}}>
+    <Navbar.Brand href="/" className="fw-bold fs-3 brand-logo" style={{color: "#12b886"}}>
       <img
         alt=""
         src={Logo}
