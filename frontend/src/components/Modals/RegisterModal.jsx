@@ -2,7 +2,6 @@
 import Modal from "react-bootstrap/Modal";
 
 // Custom Components
-import LoginForm from "../Forms/LoginForm";
 import RegisterForm from "../Forms/RegisterForm";
 import SocialAuthModalSection from "./ModalSections/SocialAuthModalSection";
 
@@ -13,7 +12,10 @@ export default function RegisterModal(props) {
         <Modal.Title>Sign Up</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <RegisterForm onClickBackToLoginPage={props.onClickBackToLoginPage} />
+        <RegisterForm
+          onClickBackToLoginPage={props.onClickBackToLoginPage}
+          success={props.success}
+        />
         <SocialAuthModalSection />
       </Modal.Body>
     </Modal>

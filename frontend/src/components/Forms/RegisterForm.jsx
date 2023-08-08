@@ -25,6 +25,8 @@ export default function RegisterForm(props) {
   const [usernameErrorMsg, setUsernameErrorMsg] = useState("");
   const [passwordErrorMsg, setPasswordErrorMsg] = useState("");
 
+  const [signedUp, setSignedUp] = useState(false);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const user = {
@@ -37,7 +39,8 @@ export default function RegisterForm(props) {
     await axios
       .post("http://127.0.0.1:8000/api/users/", user)
       .then((response) => {
-        console.log(response.data);
+        setSignedUp(true);
+        props.success(signedUp)
       })
       .catch((error) => {
         if ("first_name" in error.response.data) {

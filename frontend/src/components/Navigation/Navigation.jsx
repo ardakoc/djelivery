@@ -26,6 +26,7 @@ export default function Navigation() {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [signedUp, setSignedUp] = useState(false);
 
   const handleCloseModal = () => setShowLoginModal(false);
   const handleshowLoginModal = () => {
@@ -47,6 +48,13 @@ export default function Navigation() {
     setShowForgotPasswordModal(false);
     setShowRegisterModal(true);
   };
+
+  const setSuccess = () => {
+    setSignedUp(true);
+    setShowLoginModal(true);
+    setShowForgotPasswordModal(false);
+    setShowRegisterModal(false);
+  }
 
   return (
     <>
@@ -125,6 +133,7 @@ export default function Navigation() {
         onHide={handleCloseModal}
         onClickForgotPassword={handleShowForgotPasswordModal}
         onClickRegister={handleShowRegisterModal}
+        signedUp={signedUp}
       />
       <ForgotPasswordModal
         show={showForgotPasswordModal}
@@ -135,6 +144,7 @@ export default function Navigation() {
         show={showRegisterModal}
         onHide={handleCloseRegisterModal}
         onClickBackToLoginPage={handleshowLoginModal}
+        success={setSuccess}
       />
     </>
   );

@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal";
 // Custom Components
 import LoginForm from "../Forms/LoginForm";
 import SocialAuthModalSection from "./ModalSections/SocialAuthModalSection";
+import ModalInfoText from "../Texts/InfoText";
 
 export default function LoginModal(props) {
   return (
@@ -12,7 +13,13 @@ export default function LoginModal(props) {
         <Modal.Title>Login To Your Account</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <LoginForm onClickForgotPassword={props.onClickForgotPassword} onClickRegister={props.onClickRegister} />
+        {props.signedUp && (
+          <ModalInfoText msg="You have successfully registered. You can login now." />
+        )}
+        <LoginForm
+          onClickForgotPassword={props.onClickForgotPassword}
+          onClickRegister={props.onClickRegister}
+        />
         <SocialAuthModalSection />
       </Modal.Body>
     </Modal>
