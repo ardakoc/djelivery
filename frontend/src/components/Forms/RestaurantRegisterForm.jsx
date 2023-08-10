@@ -22,6 +22,8 @@ import Username from "../Icons/Username";
 import FormErrorText from "../Texts/FormErrorText";
 import FormInput from "../InputGroups/FormInput";
 import PrimaryButton from "../Buttons/PrimaryButton";
+import FileUploadButton from "../Buttons/FileUploadButton";
+import InputLabelText from "../Texts/InputLabelText";
 
 export default function RestaurantRegisterForm(props) {
   const [firstNameErrorMsg, setfirstNameErrorMsg] = useState("");
@@ -101,7 +103,7 @@ export default function RestaurantRegisterForm(props) {
           />
           <Row>
             <Col>
-              <Form.Group className="mb-3" controlId="formLastName">
+              <Form.Group className="mb-3" controlId="formFirstName">
                 <FormInput name="first_name" text="First Name" />
                 <FormErrorText msg={firstNameErrorMsg} />
               </Form.Group>
@@ -115,13 +117,13 @@ export default function RestaurantRegisterForm(props) {
           </Row>
           <Row>
             <Col>
-              <Form.Group className="mb-3" controlId="formLastName">
+              <Form.Group className="mb-3" controlId="formEmailAddress">
                 <FormInput name="email" text="Email Address" />
                 <FormErrorText msg={emailErrorMsg} />
               </Form.Group>
             </Col>
             <Col>
-              <Form.Group className="mb-3" controlId="formLastName">
+              <Form.Group className="mb-3" controlId="formUsername">
                 <FormInput name="username" text="Username" />
                 <FormErrorText msg={usernameErrorMsg} />
               </Form.Group>
@@ -129,30 +131,33 @@ export default function RestaurantRegisterForm(props) {
           </Row>
           <Row>
             <Col>
-              <Form.Group className="mb-3" controlId="formLastName">
+              <Form.Group className="mb-3" controlId="formRestaurantName">
                 <FormInput name="restaurant_name" text="Restaurant Name" />
                 <FormErrorText msg="" />
               </Form.Group>
             </Col>
             <Col>
-              <Form.Group className="mb-3" controlId="formLastName">
-                <FormInput name="restaurant_license" text="Restaurant License" />
+              <Form.Group className="mb-3" controlId="formRestaurantLicense">
+                <InputLabelText text="Restaurant License" />
+                <FileUploadButton />
                 <FormErrorText msg="" />
               </Form.Group>
             </Col>
           </Row>
-
-          
           <Row>
             <Col>
-              <Form.Group className="mb-3" controlId="formLastName">
-                <FormInput name="password" text="Password" />
+              <Form.Group className="mb-3" controlId="formPassword">
+                <FormInput name="password" type="password" text="Password" />
                 <FormErrorText msg="" />
               </Form.Group>
             </Col>
             <Col>
-              <Form.Group className="mb-3" controlId="formLastName">
-                <FormInput name="confirm_password" text="Confirm Password" />
+              <Form.Group className="mb-3" controlId="formConfirmPassword">
+                <FormInput
+                  name="confirm_password"
+                  type="password"
+                  text="Confirm Password"
+                />
                 <FormErrorText msg="" />
               </Form.Group>
             </Col>
