@@ -11,8 +11,8 @@ class Vendor(models.Model):
         on_delete=models.CASCADE
     )
     vendor_name = models.CharField(max_length=100)
-    vendor_licence = models.ImageField(
-        upload_to='vendor/licences',
+    vendor_license = models.ImageField(
+        upload_to='vendor/licenses',
         blank=True,
         null=True
     )
