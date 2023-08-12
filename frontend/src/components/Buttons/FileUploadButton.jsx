@@ -4,8 +4,9 @@ import { useRef, useState } from "react";
 // Bootstrap Components
 import Button from "react-bootstrap/esm/Button";
 
-export default function FileUploadButton() {
-  const [selectedFile, setSelectedFile] = useState("No file chosen");
+export default function FileUploadButton(props) {
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [inputMsg, setInputMsg] = useState("No file chosen");
   const inputRef = useRef(null);
 
   const handleClick = () => {
@@ -20,12 +21,15 @@ export default function FileUploadButton() {
     }
 
     event.target.value = null;
-    setSelectedFile(String(fileObj.name));
+    setInputMsg(String(fileObj.name));
+    setSelectedFile(fileObj);
+    return selectedFile
   };
 
   return (
     <div>
       <input
+        name={props.name}
         style={{ display: "none" }}
         ref={inputRef}
         type="file"
@@ -40,7 +44,7 @@ export default function FileUploadButton() {
         Choose file
       </Button>
       <span className="ms-2" style={{ fontSize: "13px" }}>
-        {selectedFile}
+        {inputMsg}
       </span>
     </div>
   );

@@ -6,24 +6,16 @@ import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
-import Button from "react-bootstrap/esm/Button";
 
 // Custom Components
-import InputWithIcon from "../InputGroups/InputWithIcon";
 import PageTitle from "../Titles/PageTitle";
 import Page from "../Layout/Page";
-
-// Icons
-import Email from "../Icons/Email";
-import Password from "../Icons/Password";
-import ModalLink from "../Link/ModalLink";
-import Name from "../Icons/Name";
-import Username from "../Icons/Username";
 import FormErrorText from "../Texts/FormErrorText";
 import FormInput from "../InputGroups/FormInput";
 import PrimaryButton from "../Buttons/PrimaryButton";
 import FileUploadButton from "../Buttons/FileUploadButton";
 import InputLabelText from "../Texts/InputLabelText";
+import FormSectionTitle from "../Titles/FormSectionTitle";
 
 export default function RestaurantRegisterForm(props) {
   const [firstNameErrorMsg, setfirstNameErrorMsg] = useState("");
@@ -31,8 +23,12 @@ export default function RestaurantRegisterForm(props) {
   const [emailErrorMsg, setEmailErrorMsg] = useState("");
   const [usernameErrorMsg, setUsernameErrorMsg] = useState("");
   const [passwordErrorMsg, setPasswordErrorMsg] = useState("");
+  const [restaurantNameErrorMsg, setRestaurantNameErrorMsg] = useState("");
+  const [restaurantLicenseErrorMsg, setRestaurantLicenseErrorMsg] =
+    useState("");
 
-  const [signedUp, setSignedUp] = useState(false);
+  const [userSignedUp, setUserSignedUp] = useState(false);
+  const [restaurantSignedUp, setRestaurantSignedUp] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -43,13 +39,27 @@ export default function RestaurantRegisterForm(props) {
       username: event.target.username.value,
       password: event.target.password.value,
     };
+    const restaurant = {
+      restaurant_name: event.target.restaurant_name.value,
+      restaurant_license: event.target.restaurant_license.value,
+    };
+    
     await axios
-      .post("http://127.0.0.1:8000/api/users/", user)
-      .then((response) => {
-        setSignedUp(true);
-        props.success(signedUp);
-      })
+      .all([
+        axios.post("http://127.0.0.1:8000/api/users/", user),
+        axios.post("http://127.0.0.1:8000/api/vendors/", restaurant),
+      ])
+      .then(
+        axios.spread((
+          {data: user},
+          {data: vendor}) => {
+            setUserSignedUp(true);
+            props.success(userSignedUp);
+            setRestaurantSignedUp(true);
+            props.success(restaurantSignedUp);
+      }))
       .catch((error) => {
+        console.log(error.response.data)
         if ("first_name" in error.response.data) {
           setfirstNameErrorMsg(
             String(error.response.data["first_name"]).charAt(0).toUpperCase() +
@@ -90,6 +100,24 @@ export default function RestaurantRegisterForm(props) {
         } else {
           setPasswordErrorMsg("");
         }
+        if ("vendor_name" in error.response.data) {
+          setRestaurantNameErrorMsg(
+            String(error.response.data["vendor_name"]).charAt(0).toUpperCase() +
+              String(error.response.data["vendor_name"]).slice(1)
+          );
+        } else {
+          setRestaurantNameErrorMsg("");
+        }
+        if ("vendor_license" in error.response.data) {
+          setRestaurantLicenseErrorMsg(
+            String(error.response.data["vendor_license"])
+              .charAt(0)
+              .toUpperCase() +
+              String(error.response.data["vendor_license"]).slice(1)
+          );
+        } else {
+          setRestaurantLicenseErrorMsg("");
+        }
       });
   };
 
@@ -101,64 +129,78 @@ export default function RestaurantRegisterForm(props) {
             text="PARTNER WITH DJELIVERY"
             subtext="Register your restaurant with Djelivery marketplace and get orders online!"
           />
-          <Row>
+          <FormSectionTitle text="Personal Information" />
+          <Row className="mb-3">
             <Col>
               <Form.Group className="mb-3" controlId="formFirstName">
                 <FormInput name="first_name" text="First Name" />
-                <FormErrorText msg={firstNameErrorMsg} />
+                <FormErrorText
+                  msg={firstNameErrorMsg}
+                  style={{ marginTop: "-20px" }}
+                />
               </Form.Group>
             </Col>
             <Col>
               <Form.Group className="mb-3" controlId="formLastName">
                 <FormInput name="last_name" text="Last Name" />
-                <FormErrorText msg={lastNameErrorMsg} />
+                <FormErrorText
+                  msg={lastNameErrorMsg}
+                  style={{ marginTop: "-20px" }}
+                />
               </Form.Group>
             </Col>
           </Row>
-          <Row>
+          <Row className="mb-3">
             <Col>
               <Form.Group className="mb-3" controlId="formEmailAddress">
                 <FormInput name="email" text="Email Address" />
-                <FormErrorText msg={emailErrorMsg} />
+                <FormErrorText
+                  msg={emailErrorMsg}
+                  style={{ marginTop: "-20px" }}
+                />
               </Form.Group>
             </Col>
             <Col>
               <Form.Group className="mb-3" controlId="formUsername">
                 <FormInput name="username" text="Username" />
-                <FormErrorText msg={usernameErrorMsg} />
+                <FormErrorText
+                  msg={usernameErrorMsg}
+                  style={{ marginTop: "-20px" }}
+                />
               </Form.Group>
             </Col>
           </Row>
-          <Row>
-            <Col>
-              <Form.Group className="mb-3" controlId="formRestaurantName">
-                <FormInput name="restaurant_name" text="Restaurant Name" />
-                <FormErrorText msg="" />
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group className="mb-3" controlId="formRestaurantLicense">
-                <InputLabelText text="Restaurant License" />
-                <FileUploadButton />
-                <FormErrorText msg="" />
-              </Form.Group>
-            </Col>
-          </Row>
-          <Row>
+          <Row className="mb-5">
             <Col>
               <Form.Group className="mb-3" controlId="formPassword">
                 <FormInput name="password" type="password" text="Password" />
-                <FormErrorText msg="" />
+                <FormErrorText
+                  msg={passwordErrorMsg}
+                  style={{ marginTop: "-20px" }}
+                />
+              </Form.Group>
+            </Col>
+            <Col></Col>
+          </Row>
+          <FormSectionTitle text="Restaurant Information" />
+          <Row className="mb-4">
+            <Col>
+              <Form.Group controlId="formRestaurantName">
+                <FormInput name="restaurant_name" text="Restaurant Name" />
+                <FormErrorText
+                  msg={restaurantNameErrorMsg}
+                  style={{ marginTop: "-20px" }}
+                />
               </Form.Group>
             </Col>
             <Col>
-              <Form.Group className="mb-3" controlId="formConfirmPassword">
-                <FormInput
-                  name="confirm_password"
-                  type="password"
-                  text="Confirm Password"
+              <Form.Group controlId="formRestaurantLicense">
+                <InputLabelText text="Restaurant License" />
+                <FileUploadButton name="restaurant_license" />
+                <FormErrorText
+                  msg={restaurantLicenseErrorMsg}
+                  style={{ marginTop: "-20px" }}
                 />
-                <FormErrorText msg="" />
               </Form.Group>
             </Col>
           </Row>

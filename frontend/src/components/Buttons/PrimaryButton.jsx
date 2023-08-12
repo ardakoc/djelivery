@@ -6,6 +6,7 @@ export default function PrimaryButton(props) {
     <Button
       className={props.className || "btn-success fw-bold"}
       style={props.style || { fontSize: "14px", letterSpacing: "-0.3px" }}
+      type={props.type || "submit"}
       href={props.href}
     >
       {props.text}

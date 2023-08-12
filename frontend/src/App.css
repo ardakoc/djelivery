@@ -39,6 +39,10 @@ input[type="checkbox"]:focus {
   border: none;
 }
 
+.hr {
+  color: #999;
+}
+
 /* Custom Classes */
 
 .navbar {
