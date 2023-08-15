@@ -18,7 +18,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
-        user.role = 2
+        user.role = User.CUSTOMER
         user.save()
         return user
 
@@ -39,7 +39,7 @@ class VendorSerializer(serializers.ModelSerializer):
             user_data['email'],
             user_data['password']
         )
-        user.role = 1
+        user.role = User.VENDOR
         user.save()
         user_profile = UserProfile.objects.get(user=user)
         validated_data.pop('user')

@@ -39,9 +39,12 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
+    VENDOR = 1
+    CUSTOMER = 2
+
     ROLE_CHOICE = (
-        (1, 'Restaurant'),
-        (2, 'Customer'),
+        (VENDOR, 'Vendor'),
+        (CUSTOMER, 'Customer'),
     )
 
     uuid = models.UUIDField(db_index=True, default=uuid_lib.uuid4, editable=False)
