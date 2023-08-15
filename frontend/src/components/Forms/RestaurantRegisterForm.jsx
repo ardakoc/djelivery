@@ -26,80 +26,71 @@ export default function RestaurantRegisterForm(props) {
   const [restaurantNameErrorMsg, setRestaurantNameErrorMsg] = useState("");
   const [restaurantLicenseErrorMsg, setRestaurantLicenseErrorMsg] =
     useState("");
-
-  const [userSignedUp, setUserSignedUp] = useState(false);
   const [restaurantSignedUp, setRestaurantSignedUp] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const user = {
-      first_name: event.target.first_name.value,
-      last_name: event.target.last_name.value,
-      email: event.target.email.value,
-      username: event.target.username.value,
-      password: event.target.password.value,
-    };
     const restaurant = {
-      restaurant_name: event.target.restaurant_name.value,
-      restaurant_license: event.target.restaurant_license.value,
+      user: {
+        first_name: event.target.first_name.value,
+        last_name: event.target.last_name.value,
+        email: event.target.email.value,
+        username: event.target.username.value,
+        password: event.target.password.value,
+      },
+      vendor_name: event.target.restaurant_name.value,
+      vendor_license: event.target.restaurant_license.value,
     };
-    
+
     await axios
-      .all([
-        axios.post("http://127.0.0.1:8000/api/users/", user),
-        axios.post("http://127.0.0.1:8000/api/vendors/", restaurant),
-      ])
-      .then(
-        axios.spread((
-          {data: user},
-          {data: vendor}) => {
-            setUserSignedUp(true);
-            props.success(userSignedUp);
-            setRestaurantSignedUp(true);
-            props.success(restaurantSignedUp);
-      }))
-      .catch((error) => {
-        console.log(error.response.data)
-        if ("first_name" in error.response.data) {
+      .post("http://127.0.0.1:8000/api/vendors/", restaurant)
+      .then((response) => {
+        console.log(response);
+        setRestaurantSignedUp(true);
+        props.success(restaurantSignedUp);
+      })
+      .catch((error) => {        
+        if ("first_name" in error.response.data.user) {
           setfirstNameErrorMsg(
-            String(error.response.data["first_name"]).charAt(0).toUpperCase() +
-              String(error.response.data["first_name"]).slice(1)
+            String(error.response.data.user["first_name"]).charAt(0).toUpperCase() +
+              String(error.response.data.user["first_name"]).slice(1)
           );
         } else {
           setfirstNameErrorMsg("");
         }
-        if ("last_name" in error.response.data) {
+        if ("last_name" in error.response.data.user) {
           setLastNameErrorMsg(
-            String(error.response.data["last_name"]).charAt(0).toUpperCase() +
-              String(error.response.data["last_name"]).slice(1)
+            String(error.response.data.user["last_name"]).charAt(0).toUpperCase() +
+              String(error.response.data.user["last_name"]).slice(1)
           );
         } else {
           setLastNameErrorMsg("");
         }
-        if ("email" in error.response.data) {
+        if ("email" in error.response.data.user) {
           setEmailErrorMsg(
-            String(error.response.data["email"]).charAt(0).toUpperCase() +
-              String(error.response.data["email"]).slice(1)
+            String(error.response.data.user["email"]).charAt(0).toUpperCase() +
+              String(error.response.data.user["email"]).slice(1)
           );
         } else {
           setEmailErrorMsg("");
         }
-        if ("username" in error.response.data) {
+        if ("username" in error.response.data.user) {
           setUsernameErrorMsg(
-            String(error.response.data["username"]).charAt(0).toUpperCase() +
-              String(error.response.data["username"]).slice(1)
+            String(error.response.data.user["username"]).charAt(0).toUpperCase() +
+              String(error.response.data.user["username"]).slice(1)
           );
         } else {
           setUsernameErrorMsg("");
         }
-        if ("password" in error.response.data) {
+        if ("password" in error.response.data.user) {
           setPasswordErrorMsg(
-            String(error.response.data["password"]).charAt(0).toUpperCase() +
-              String(error.response.data["password"]).slice(1)
+            String(error.response.data.user["password"]).charAt(0).toUpperCase() +
+              String(error.response.data.user["password"]).slice(1)
           );
         } else {
           setPasswordErrorMsg("");
         }
+
         if ("vendor_name" in error.response.data) {
           setRestaurantNameErrorMsg(
             String(error.response.data["vendor_name"]).charAt(0).toUpperCase() +

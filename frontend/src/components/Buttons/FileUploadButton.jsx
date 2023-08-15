@@ -27,7 +27,7 @@ export default function FileUploadButton(props) {
   };
 
   return (
-    <div>
+    <div className="mb-4">
       <input
         name={props.name}
         style={{ display: "none" }}
