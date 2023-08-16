@@ -55,7 +55,7 @@ export default function RestaurantRegisterForm(props) {
     };
 
     await axios
-      .post("http://127.0.0.1:8000/api/vendors/", restaurant)
+      .post("http://127.0.0.1:8000/api/v1/vendors/", restaurant)
       .then((response) => {
         setRestaurantSignedUp(true);
         props.success(restaurantSignedUp);
