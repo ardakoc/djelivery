@@ -36,7 +36,6 @@ export default function RestaurantRegisterForm(props) {
 
   const [restaurantSignedUp, setRestaurantSignedUp] = useState(false);
 
-  // let history = useHistory();
   const successMsg =
     "Your restaurant has been registered successfully! Please wait for the approval.";
 
@@ -59,7 +58,6 @@ export default function RestaurantRegisterForm(props) {
       .then((response) => {
         setRestaurantSignedUp(true);
         props.success(restaurantSignedUp);
-        // history.push("/", { info: successMsg });
       })
       .catch((error) => {
         if ("first_name" in error.response.data.user) {

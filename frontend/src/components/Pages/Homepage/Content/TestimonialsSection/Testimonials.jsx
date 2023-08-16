@@ -8,7 +8,7 @@ import Testimonial from "./Testimonial";
 export default function Testimonials() {
   return (
     <Content
-      background="true"
+      withBackground
       title="Happy eaters"
       description="We care your experience is perfect"
       cardBorder="none"

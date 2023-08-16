@@ -6,7 +6,7 @@ import Card from "react-bootstrap/Card";
 
 export default function Content(props) {
   return (
-    <div className={props.background === "true" && "section-bg"}>
+    <div className={props.withBackground && "section-bg"}>
       <Container className={props.className || "pt-5 pb-5"}>
         <Row>
           <Col className={props.titleCenter && "text-center"}>

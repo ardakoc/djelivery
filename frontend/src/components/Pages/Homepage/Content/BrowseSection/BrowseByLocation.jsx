@@ -14,7 +14,7 @@ export default function BrowseByLocation() {
       className="pb-5"
       title="Popular Localities In Izmir"
       description="Explore restaurants by locality"
-      background="true"
+      withBackground
       body={
         <Row>
           <Col>

@@ -17,7 +17,7 @@ export default function BrowseByCuisine() {
     <Content
       title="Browse By Cuisine"
       description="Discover restaurants by type of meal"
-      background="true"
+      withBackground
       body={
         <Card.Body>
           <Row>
