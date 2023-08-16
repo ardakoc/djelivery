@@ -144,9 +144,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Django Rest Framework
 
-DEFAULT_PERMISSION_CLASSES = [
-    'rest_framework.permissions.IsAdminUser',
-]
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
 
 
 # CORS Configuration
