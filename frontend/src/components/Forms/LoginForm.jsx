@@ -21,7 +21,7 @@ export default function LoginForm(props) {
         <Form.Group className="mb-3" controlId="formPassword">
           <InputWithIcon
             icon={<Password />}
-            placeholder="*********"
+            placeholder="Password"
             type="password"
           />
         </Form.Group>

@@ -130,7 +130,7 @@ export default function RegisterForm(props) {
           <InputWithIcon
             name="password"
             icon={<Password />}
-            placeholder="*********"
+            placeholder="Password"
             type="password"
           />
           <FormErrorText msg={passwordErrorMsg} />
