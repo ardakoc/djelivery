@@ -16,13 +16,19 @@ export default function LoginForm(props) {
     <>
       <Form>
         <Form.Group className="mb-3" controlId="formEmail">
-          <InputWithIcon icon={<Email />} placeholder="Email address" />
+          <InputWithIcon
+            name="email"
+            type="email"
+            placeholder="Email address"
+            icon={<Email />}
+          />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formPassword">
           <InputWithIcon
-            icon={<Password />}
-            placeholder="Password"
+            name="password"
             type="password"
+            placeholder="Password"
+            icon={<Password />}
           />
         </Form.Group>
         <Form.Text>
