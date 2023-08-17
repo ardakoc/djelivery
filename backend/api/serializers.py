@@ -50,3 +50,9 @@ class VendorSerializer(serializers.ModelSerializer):
         )
 
         return vendor
+    
+
+class LoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['email', 'password']
