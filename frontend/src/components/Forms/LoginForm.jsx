@@ -1,3 +1,5 @@
+import axios from "axios";
+
 // Bootstrap Components
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
@@ -10,11 +12,31 @@ import InputWithIcon from "../InputGroups/InputWithIcon";
 import Email from "../Icons/Email";
 import Password from "../Icons/Password";
 import ModalLink from "../Link/ModalLink";
+import FormErrorText from "../Texts/FormErrorText";
+import { useState } from "react";
 
 export default function LoginForm(props) {
+  const [loginErrorMsg, setLoginErrorMsg] = useState("");
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const user = {
+      email: event.target.email.value,
+      password: event.target.password.value,
+    };
+
+    await axios
+      .post("http://127.0.0.1:8000/api/v1/login/", user)
+      .then((response) => {
+        localStorage.setItem("token", response.data.token);
+      })
+      .catch((error) => {
+        setLoginErrorMsg(error.response.data.error);
+      });
+  };
   return (
     <>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formEmail">
           <InputWithIcon
             name="email"
@@ -39,6 +61,7 @@ export default function LoginForm(props) {
             />
           </Nav>
         </Form.Text>
+        <FormErrorText msg={loginErrorMsg} style={{ marginBottom: "8px" }} />
         <BlockButton text="LOG IN" />
         <Form.Text>
           <Nav style={{ paddingTop: "16px" }}>
