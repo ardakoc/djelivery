@@ -1,12 +1,13 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 from rest_framework import viewsets, status
+from rest_framework import permissions
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 
 from accounts.models import User
 from vendor.models import Vendor
-from . import serializers, permissions 
+from . import serializers, permissions as custom_permissions
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -16,6 +17,9 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = serializers.UserSerializer
     lookup_field = 'uuid'
+    
+    def get_view_name(self):
+        return "Users api"
 
 
 class VendorViewSet(viewsets.ModelViewSet):
@@ -25,6 +29,9 @@ class VendorViewSet(viewsets.ModelViewSet):
     queryset = Vendor.objects.all()
     serializer_class = serializers.VendorSerializer
 
+    def get_view_name(self):
+        return "Vendors api"
+
 
 class LoginViewSet(viewsets.ModelViewSet):
     """
@@ -32,10 +39,10 @@ class LoginViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = serializers.LoginSerializer
-    permission_classes = [permissions.IsAnonymousUser]
+    permission_classes = [custom_permissions.IsAnonymousUser]
 
-    def retrieve(self, request):
-        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+    def get_view_name(self):
+        return "Login api"
     
     def list(self, request):
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
@@ -54,3 +61,24 @@ class LoginViewSet(viewsets.ModelViewSet):
             {'error': 'Username or password is wrong. Please try again.'},
             status=status.HTTP_401_UNAUTHORIZED
         )
+
+
+class LogoutViewSet(viewsets.ViewSet):
+    """
+    Removes credentials for authenticated user.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get_view_name(self):
+        return "Logout api"
+
+    def create(self, request):
+        user = request.user
+        if user.is_authenticated:
+            logout(request)
+            return Response({'message': 'Logout successful.'}, status=status.HTTP_200_OK)
+        return Response(
+            {'error': 'User is not authenticated'},
+            status=status.HTTP_401_UNAUTHORIZED
+        )
+
