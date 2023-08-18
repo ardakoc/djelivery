@@ -1,5 +1,6 @@
 // React Hooks
 import { useState } from "react";
+import axios from "axios";
 
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
@@ -23,11 +24,13 @@ import Compass from "../../Icons/Compass";
 import Location from "../../Icons/Location/Location";
 
 export default function Navigation() {
+  // state definitions
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [signedUp, setSignedUp] = useState(false);
 
+  // state methods
   const handleCloseModal = () => setShowLoginModal(false);
   const handleshowLoginModal = () => {
     setSignedUp(false);
@@ -58,6 +61,26 @@ export default function Navigation() {
     setShowLoginModal(true);
     setShowForgotPasswordModal(false);
     setShowRegisterModal(false);
+  };
+
+  // token check
+  const token = localStorage.getItem("token");
+  const isAuthenticated = token !== null;
+  if (token !== null) {
+    axios.defaults.headers.common['Authorization'] = `Token ${token}`;
+  }
+
+  const handleLogout = async (event) => {
+    event.preventDefault();
+    await axios
+      .post("http://127.0.0.1:8000/api/v1/logout/")
+      .then((response) => {
+        localStorage.removeItem("token");
+        window.location.reload(true);
+      })
+      .catch((error) => {
+        console.log(error.response.data.detail);
+      });
   };
 
   return (
@@ -120,14 +143,33 @@ export default function Navigation() {
               </NavDropdown>
             </Nav>
             <Nav className="d-flex gap-3">
-              <Nav.Link
-                className="fw-bold"
-                style={{ fontSize: "14px", letterSpacing: "-0.3px" }}
-                onClick={handleshowLoginModal}
-              >
-                LOGIN / REGISTER
-              </Nav.Link>
-              <PrimaryButton href="/register-restaurant" text="REGISTER RESTAURANT" />
+              {isAuthenticated ? (
+                <Nav.Link
+                  className="fw-bold"
+                  style={{
+                    color: "#ff0000",
+                    fontSize: "14px",
+                    letterSpacing: "-0.3px",
+                  }}
+                  onClick={handleLogout}
+                >
+                  LOGOUT
+                </Nav.Link>
+              ) : (
+                <>
+                  <Nav.Link
+                    className="fw-bold"
+                    style={{ fontSize: "14px", letterSpacing: "-0.3px" }}
+                    onClick={handleshowLoginModal}
+                  >
+                    LOGIN / REGISTER
+                  </Nav.Link>
+                  <PrimaryButton
+                    href="/register-restaurant"
+                    text="REGISTER RESTAURANT"
+                  />
+                </>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
