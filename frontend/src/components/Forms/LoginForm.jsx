@@ -29,6 +29,7 @@ export default function LoginForm(props) {
       .post("http://127.0.0.1:8000/api/v1/login/", user)
       .then((response) => {
         localStorage.setItem("token", response.data.token);
+        window.location.reload(true)
       })
       .catch((error) => {
         setLoginErrorMsg(error.response.data.error);
