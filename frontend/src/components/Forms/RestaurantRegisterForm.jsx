@@ -25,6 +25,10 @@ import FormSectionTitle from "../Titles/FormSectionTitle";
 import Homepage from "../Pages/Homepage/Homepage";
 
 export default function RestaurantRegisterForm(props) {
+  // token check
+  const token = localStorage.getItem("token");
+  const isAuthenticated = token !== null;
+
   const [firstNameErrorMsg, setfirstNameErrorMsg] = useState("");
   const [lastNameErrorMsg, setLastNameErrorMsg] = useState("");
   const [emailErrorMsg, setEmailErrorMsg] = useState("");
@@ -139,6 +143,15 @@ export default function RestaurantRegisterForm(props) {
               <Route
                 path="/"
                 render={() => <Homepage response={successMsg} />}
+              />
+              <Redirect to="/" />
+            </>
+          )}
+          {isAuthenticated && (
+            <>
+              <Route
+                path="/"
+                render={() => <Homepage />}
               />
               <Redirect to="/" />
             </>
