@@ -43,7 +43,7 @@ class LoginViewSet(viewsets.ModelViewSet):
 
     def get_view_name(self):
         return "Login api"
-    
+
     def list(self, request):
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
@@ -76,6 +76,8 @@ class LogoutViewSet(viewsets.ViewSet):
         user = request.user
         if user.is_authenticated:
             logout(request)
+            token = Token.objects.get(user=user)
+            token.delete()
             return Response({'message': 'Logout successful.'}, status=status.HTTP_200_OK)
         return Response(
             {'error': 'User is not authenticated'},
