@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 
-from rest_framework import viewsets, status
-from rest_framework import permissions
+from rest_framework import viewsets, mixins, status, permissions
+from rest_framework.generics import RetrieveUpdateAPIView
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 
@@ -14,12 +14,26 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     Provides the standard actions for users.
     """
-    queryset = User.objects.all()
+    queryset = User.objects.all().order_by('-created_date')
     serializer_class = serializers.UserSerializer
     lookup_field = 'uuid'
     
     def get_view_name(self):
         return "Users api"
+    
+
+class UserDetailsViewset(viewsets.GenericViewSet,
+                         mixins.RetrieveModelMixin,
+                         mixins.UpdateModelMixin):
+    serializer_class = serializers.UserSerializer
+    permission_classes = [permissions.IsAuthenticated,]
+    lookup_field = 'uuid'
+
+    def get_object(self):
+        return self.request.user
+
+    def get_queryset(self):
+        return User.objects.none()
 
 
 class VendorViewSet(viewsets.ModelViewSet):
