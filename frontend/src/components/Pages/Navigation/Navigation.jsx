@@ -67,7 +67,7 @@ export default function Navigation() {
   const token = localStorage.getItem("token");
   const isAuthenticated = token !== null;
   if (token !== null) {
-    axios.defaults.headers.common['Authorization'] = `Token ${token}`;
+    axios.defaults.headers.common["Authorization"] = `Token ${token}`;
   }
 
   const handleLogout = async (event) => {
@@ -76,7 +76,7 @@ export default function Navigation() {
       .post("http://127.0.0.1:8000/api/v1/logout/")
       .then((response) => {
         localStorage.removeItem("token");
-        window.location.reload(true);
+        window.location.href = 'http://localhost:5173/'
       })
       .catch((error) => {
         console.log(error.response.data.detail);
@@ -144,17 +144,23 @@ export default function Navigation() {
             </Nav>
             <Nav className="d-flex gap-3">
               {isAuthenticated ? (
-                <Nav.Link
-                  className="fw-bold"
-                  style={{
-                    color: "#ff0000",
-                    fontSize: "14px",
-                    letterSpacing: "-0.3px",
-                  }}
-                  onClick={handleLogout}
-                >
-                  LOGOUT
-                </Nav.Link>
+                <>
+                  <PrimaryButton
+                    href="/dashboard"
+                    text="Dashboard"
+                  />
+                  <Nav.Link
+                    className="fw-bold"
+                    style={{
+                      color: "#ff0000",
+                      fontSize: "14px",
+                      letterSpacing: "-0.3px",
+                    }}
+                    onClick={handleLogout}
+                  >
+                    LOGOUT
+                  </Nav.Link>
+                </>
               ) : (
                 <>
                   <Nav.Link
