@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
+from django.urls import resolve
 
 from rest_framework import viewsets, mixins, status, permissions
-from rest_framework.generics import RetrieveUpdateAPIView
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 
@@ -17,10 +17,9 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-created_date')
     serializer_class = serializers.UserSerializer
     lookup_field = 'uuid'
-    permission_classes = [permissions.IsAuthenticated,]
     
     def get_view_name(self):
-        return "Users api"    
+        return "Users api"
     
 
 class CurrentUserViewset(viewsets.GenericViewSet,
@@ -32,12 +31,21 @@ class CurrentUserViewset(viewsets.GenericViewSet,
     serializer_class = serializers.UserSerializer
     permission_classes = [permissions.IsAuthenticated,]
     lookup_field = 'uuid'
+    
+    def get_endpoint(self):
+        return resolve(self.request.path_info).kwargs['uuid']
 
     def get_object(self):
-        return self.request.user
+        if self.get_endpoint() == 'current':
+            return self.request.user
 
     def get_queryset(self):
         return User.objects.none()
+    
+    def update(self, request, *args, **kwargs):
+        if self.get_endpoint() != 'current':
+            return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+        return super().update(request, *args, **kwargs)
 
 
 class VendorViewSet(viewsets.ModelViewSet):
