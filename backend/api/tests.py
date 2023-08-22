@@ -128,3 +128,32 @@ class UserAPITestCase(APITestCase):
             }
         )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_valid_retrieve_current_user(self):
+        """
+        Test valid request of retrieving current user's details.
+        """
+        self.set_token()
+        response = self.client.get('/api/v1/user/current/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['username'], self.user.username)
+
+    def test_invalid_retrieve_current_user(self):
+        """
+        Test invalid request of retrieving current user's details.
+        """
+        self.set_token()
+        response = self.client.get('/api/v1/user/invalid-path/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['first_name'], '')
+        self.assertEqual(response.data['last_name'], '')
+        self.assertEqual(response.data['email'], '')
+        self.assertEqual(response.data['username'], '')
+        self.assertEqual(response.data['password'], '')
+
+    def test_retrieve_current_user_when_unauthenticated(self):
+        """
+        Test invalid request of retrieving current user when unauthenticated.
+        """
+        response = self.client.get('/api/v1/user/current/')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
