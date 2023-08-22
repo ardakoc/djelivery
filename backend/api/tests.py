@@ -30,9 +30,9 @@ class UserAPITestCase(APITestCase):
 
     ### Test cases ###
 
-    def test_retrieve_authenticated_user(self):
+    def test_retrieve_users(self):
         """
-        Test retrieve authenticated user's details.
+        Test retrieve user's details.
         """
         self.set_token()
         response = self.client.get('/api/v1/users/{}/'.format(self.user.uuid))
@@ -98,3 +98,33 @@ class UserAPITestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         user = User.objects.get(uuid=response.data['uuid'])
         self.assertIsInstance(UserProfile.objects.get(user=user), UserProfile)
+
+    def test_register_invalid_user_and_create_user_profile(self):
+        """
+        Test invalid user registration.
+        """
+        # existing user case
+        response = self.client.post(
+            '/api/v1/users/',
+            {
+                'first_name': 'test',
+                'last_name': 'register',
+                'email': 'testuser@test.com',
+                'username': 'testuser',
+                'password': 'testpassword'
+            }
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+        # blank form field case
+        response = self.client.post(
+            '/api/v1/users/',
+            {
+                'first_name': '',
+                'last_name': '',
+                'email': '',
+                'username': '',
+                'password': ''
+            }
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
