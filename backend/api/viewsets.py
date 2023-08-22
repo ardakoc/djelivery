@@ -17,14 +17,18 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-created_date')
     serializer_class = serializers.UserSerializer
     lookup_field = 'uuid'
+    permission_classes = [permissions.IsAuthenticated,]
     
     def get_view_name(self):
-        return "Users api"
+        return "Users api"    
     
 
-class UserDetailsViewset(viewsets.GenericViewSet,
+class CurrentUserViewset(viewsets.GenericViewSet,
                          mixins.RetrieveModelMixin,
                          mixins.UpdateModelMixin):
+    """
+    Retrieves current user details.
+    """
     serializer_class = serializers.UserSerializer
     permission_classes = [permissions.IsAuthenticated,]
     lookup_field = 'uuid'
