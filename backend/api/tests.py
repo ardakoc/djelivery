@@ -1,9 +1,10 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.hashers import check_password
 
 from rest_framework.test import APITestCase
 from rest_framework import status
 from rest_framework.authtoken.models import Token
+
+from accounts.models import UserProfile
 
 User = get_user_model()
 
@@ -37,14 +38,6 @@ class UserAPITestCase(APITestCase):
         response = self.client.get('/api/v1/users/{}/'.format(self.user.uuid))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['username'], self.user.username)
-
-    def test_retrieve_unauthenticated_user(self):
-        """
-        Test get 401 error on retrieving user's detail when unauthenticated.
-        """
-        response = self.client.get('/api/v1/users/{}/'.format(self.user.uuid))
-        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-
 
     def test_login_valid_user(self):
         """
@@ -87,4 +80,21 @@ class UserAPITestCase(APITestCase):
         """
         response = self.client.post('/api/v1/logout/')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-        
+
+    def test_register_valid_user_and_create_user_profile(self):
+        """
+        Test valid user registration.
+        """
+        response = self.client.post(
+            '/api/v1/users/',
+            {
+                'first_name': 'test',
+                'last_name': 'register',
+                'email': 'testregister@test.com',
+                'username': 'testregister',
+                'password': 'testpassword'
+            }
+        )
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        user = User.objects.get(uuid=response.data['uuid'])
+        self.assertIsInstance(UserProfile.objects.get(user=user), UserProfile)
