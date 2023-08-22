@@ -20,12 +20,20 @@ class UserAPITestCase(APITestCase):
             password='testpassword',
         )
 
+    def set_token(self):
+        """
+        Set token for the test cases need authenticate.
+        """
+        self.token = Token.objects.create(user=self.user)
+        self.client.credentials(HTTP_AUTHORIZATION=f'Token {self.token.key}')
+
+    ### Test cases ###
+
     def test_retrieve_authenticated_user(self):
         """
         Test retrieve authenticated user's details.
         """
-        self.token = Token.objects.create(user=self.user)
-        self.client.credentials(HTTP_AUTHORIZATION=f'Token {self.token.key}')
+        self.set_token()
         response = self.client.get('/api/v1/users/{}/'.format(self.user.uuid))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['username'], self.user.username)
@@ -64,3 +72,19 @@ class UserAPITestCase(APITestCase):
             }
         )
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def test_logout_authenticated_user(self):
+        """
+        Test authenticated user logout.
+        """
+        self.set_token()
+        response = self.client.post('/api/v1/logout/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_logout_unauthenticated_user(self):
+        """
+        Test unauthenticated user logout.
+        """
+        response = self.client.post('/api/v1/logout/')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        
