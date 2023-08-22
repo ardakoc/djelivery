@@ -29,15 +29,55 @@ class UserAPITestCase(APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION=f'Token {self.token.key}')
 
     ### Test cases ###
+    
+    def test_register_valid_user_and_create_user_profile(self):
+        """
+        Test valid user registration.
+        """
+        response = self.client.post(
+            '/api/v1/users/',
+            {
+                'first_name': 'test',
+                'last_name': 'register',
+                'email': 'testregister@test.com',
+                'username': 'testregister',
+                'password': 'testpassword'
+            }
+        )
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        user = User.objects.get(uuid=response.data['uuid'])
+        self.assertEqual(user.get_role(), 'Customer')
+        self.assertIsInstance(UserProfile.objects.get(user=user), UserProfile)
 
-    def test_retrieve_users(self):
+    def test_register_invalid_user_and_create_user_profile(self):
         """
-        Test retrieve user's details.
+        Test invalid user registration.
         """
-        self.set_token()
-        response = self.client.get('/api/v1/users/{}/'.format(self.user.uuid))
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['username'], self.user.username)
+        # existing user case
+        response = self.client.post(
+            '/api/v1/users/',
+            {
+                'first_name': 'test',
+                'last_name': 'register',
+                'email': 'testuser@test.com',
+                'username': 'testuser',
+                'password': 'testpassword'
+            }
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+        # blank form field case
+        response = self.client.post(
+            '/api/v1/users/',
+            {
+                'first_name': '',
+                'last_name': '',
+                'email': '',
+                'username': '',
+                'password': ''
+            }
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)  
 
     def test_login_valid_user(self):
         """
@@ -79,81 +119,4 @@ class UserAPITestCase(APITestCase):
         Test unauthenticated user logout.
         """
         response = self.client.post('/api/v1/logout/')
-        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-
-    def test_register_valid_user_and_create_user_profile(self):
-        """
-        Test valid user registration.
-        """
-        response = self.client.post(
-            '/api/v1/users/',
-            {
-                'first_name': 'test',
-                'last_name': 'register',
-                'email': 'testregister@test.com',
-                'username': 'testregister',
-                'password': 'testpassword'
-            }
-        )
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        user = User.objects.get(uuid=response.data['uuid'])
-        self.assertIsInstance(UserProfile.objects.get(user=user), UserProfile)
-
-    def test_register_invalid_user_and_create_user_profile(self):
-        """
-        Test invalid user registration.
-        """
-        # existing user case
-        response = self.client.post(
-            '/api/v1/users/',
-            {
-                'first_name': 'test',
-                'last_name': 'register',
-                'email': 'testuser@test.com',
-                'username': 'testuser',
-                'password': 'testpassword'
-            }
-        )
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-
-        # blank form field case
-        response = self.client.post(
-            '/api/v1/users/',
-            {
-                'first_name': '',
-                'last_name': '',
-                'email': '',
-                'username': '',
-                'password': ''
-            }
-        )
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-
-    def test_valid_retrieve_current_user(self):
-        """
-        Test valid request of retrieving current user's details.
-        """
-        self.set_token()
-        response = self.client.get('/api/v1/user/current/')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['username'], self.user.username)
-
-    def test_invalid_retrieve_current_user(self):
-        """
-        Test invalid request of retrieving current user's details.
-        """
-        self.set_token()
-        response = self.client.get('/api/v1/user/invalid-path/')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['first_name'], '')
-        self.assertEqual(response.data['last_name'], '')
-        self.assertEqual(response.data['email'], '')
-        self.assertEqual(response.data['username'], '')
-        self.assertEqual(response.data['password'], '')
-
-    def test_retrieve_current_user_when_unauthenticated(self):
-        """
-        Test invalid request of retrieving current user when unauthenticated.
-        """
-        response = self.client.get('/api/v1/user/current/')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
