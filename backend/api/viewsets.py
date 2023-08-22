@@ -32,6 +32,9 @@ class CurrentUserViewset(viewsets.GenericViewSet,
     permission_classes = [permissions.IsAuthenticated,]
     lookup_field = 'uuid'
     
+    def get_view_name(self):
+        return "Current user api"
+    
     def get_endpoint(self):
         return resolve(self.request.path_info).kwargs['uuid']
 
