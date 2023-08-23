@@ -60,6 +60,11 @@ class VendorViewSet(viewsets.ModelViewSet):
 
     def get_view_name(self):
         return "Vendors api"
+    
+    def create(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+        return super().create(request, *args, **kwargs)
 
 
 class LoginViewSet(viewsets.ModelViewSet):
@@ -103,7 +108,7 @@ class LogoutViewSet(viewsets.ViewSet):
 
     def create(self, request):
         user = request.user
-        if user.is_authenticated:
+        if request.user.is_authenticated:
             logout(request)
             token = Token.objects.get(user=user)
             token.delete()
