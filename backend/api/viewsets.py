@@ -21,6 +21,11 @@ class UserViewSet(viewsets.ModelViewSet):
     def get_view_name(self):
         return "Users api"
     
+    def create(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+        return super().create(request, *args, **kwargs)
+    
 
 class CurrentUserViewset(viewsets.GenericViewSet,
                          mixins.RetrieveModelMixin,
