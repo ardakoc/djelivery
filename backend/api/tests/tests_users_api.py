@@ -6,7 +6,7 @@ from rest_framework.authtoken.models import Token
 
 User = get_user_model()
 
-class UserAPITestCase(APITestCase):
+class UsersAPITestCase(APITestCase):
     def setUp(self):
         """
         Initial create of test user.

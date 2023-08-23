@@ -8,7 +8,7 @@ from accounts.models import UserProfile
 
 User = get_user_model()
 
-class UserAPITestCase(APITestCase):
+class AuthenticationAPITestCase(APITestCase):
     def setUp(self):
         """
         Initial create of test user.
@@ -49,7 +49,7 @@ class UserAPITestCase(APITestCase):
         self.assertEqual(user.get_role(), 'Customer')
         self.assertIsInstance(UserProfile.objects.get(user=user), UserProfile)
 
-    def test_register_invalid_user_and_create_user_profile(self):
+    def test_register_invalid_user(self):
         """
         Test invalid user registration.
         """
@@ -78,6 +78,23 @@ class UserAPITestCase(APITestCase):
             }
         )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)  
+
+    def test_register_authenticated_user(self):
+        """
+        Test authenticated user register.
+        """
+        self.set_token()
+        response = self.client.post(
+            '/api/v1/users/',
+            {
+                'first_name': 'test',
+                'last_name': 'register',
+                'email': 'testregister@test.com',
+                'username': 'testregister',
+                'password': 'testpassword'
+            }
+        )
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_login_valid_user(self):
         """
