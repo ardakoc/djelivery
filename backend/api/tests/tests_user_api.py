@@ -6,6 +6,7 @@ from rest_framework.authtoken.models import Token
 
 User = get_user_model()
 
+
 class UserAPITestCase(APITestCase):
     def setUp(self):
         """
@@ -26,7 +27,7 @@ class UserAPITestCase(APITestCase):
         self.token = Token.objects.create(user=self.user)
         self.client.credentials(HTTP_AUTHORIZATION=f'Token {self.token.key}')
 
-    ### Test cases ###
+    # Test cases
 
     def test_valid_retrieve_current_user(self):
         """

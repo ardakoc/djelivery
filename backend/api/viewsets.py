@@ -17,15 +17,15 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-created_date')
     serializer_class = serializers.UserSerializer
     lookup_field = 'uuid'
-    
+
     def get_view_name(self):
         return "Users api"
-    
+
     def create(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
         return super().create(request, *args, **kwargs)
-    
+
 
 class CurrentUserViewset(viewsets.GenericViewSet,
                          mixins.RetrieveModelMixin,
@@ -36,10 +36,10 @@ class CurrentUserViewset(viewsets.GenericViewSet,
     serializer_class = serializers.UserSerializer
     permission_classes = [permissions.IsAuthenticated,]
     lookup_field = 'uuid'
-    
+
     def get_view_name(self):
         return "Current user api"
-    
+
     def get_endpoint(self):
         return resolve(self.request.path_info).kwargs['uuid']
 
@@ -49,7 +49,7 @@ class CurrentUserViewset(viewsets.GenericViewSet,
 
     def get_queryset(self):
         return User.objects.none()
-    
+
     def update(self, request, *args, **kwargs):
         if self.get_endpoint() != 'current':
             return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
@@ -65,7 +65,7 @@ class VendorViewSet(viewsets.ModelViewSet):
 
     def get_view_name(self):
         return "Vendors api"
-    
+
     def create(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
@@ -107,7 +107,7 @@ class LogoutViewSet(viewsets.ViewSet):
     Removes credentials for authenticated user.
     """
     permission_classes = [permissions.IsAuthenticated]
-    
+
     def get_view_name(self):
         return "Logout api"
 
@@ -117,9 +117,11 @@ class LogoutViewSet(viewsets.ViewSet):
             logout(request)
             token = Token.objects.get(user=user)
             token.delete()
-            return Response({'message': 'Logout successful.'}, status=status.HTTP_200_OK)
+            return Response(
+                {'message': 'Logout successful.'},
+                status=status.HTTP_200_OK
+            )
         return Response(
             {'error': 'User is not authenticated'},
             status=status.HTTP_401_UNAUTHORIZED
         )
-

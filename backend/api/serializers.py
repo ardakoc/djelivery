@@ -14,7 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
             'email',
             'username',
             'password',
-            'role',            
+            'role',
         ]
         read_only_fields = ['role']
 
@@ -52,7 +52,7 @@ class VendorSerializer(serializers.ModelSerializer):
         )
 
         return vendor
-    
+
 
 class LoginSerializer(serializers.ModelSerializer):
     class Meta:

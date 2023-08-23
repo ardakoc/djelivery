@@ -1,5 +1,6 @@
 from rest_framework import permissions
 
+
 class IsAnonymousUser(permissions.BasePermission):
     """
     Permission check for anonymous user.
