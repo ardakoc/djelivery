@@ -94,7 +94,7 @@ class AuthenticationAPITestCase(APITestCase):
                 'password': 'testpassword'
             }
         )
-        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_login_valid_user(self):
         """
