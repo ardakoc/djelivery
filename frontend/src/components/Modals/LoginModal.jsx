@@ -14,7 +14,9 @@ export default function LoginModal(props) {
       </Modal.Header>
       <Modal.Body>
         {props.signedUp && (
-          <ModalInfoText msg="You have successfully registered. You can login now." />
+          <ModalInfoText msg="You have successfully registered. To log in, please
+          check your email and activate your account by clicking the link in the
+          activation mail." />
         )}
         <LoginForm
           onClickForgotPassword={props.onClickForgotPassword}

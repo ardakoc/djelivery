@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from accounts.models import User, UserProfile
 from vendor.models import Vendor
+from mail import utils
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -21,7 +22,9 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
         user.role = User.CUSTOMER
+        user.is_active = False
         user.save()
+        utils.send_verification_email(user)
         return user
 
 
@@ -50,7 +53,7 @@ class VendorSerializer(serializers.ModelSerializer):
             user_profile=user_profile,
             **validated_data
         )
-
+        utils.send_verification_email(user)
         return vendor
 
 
