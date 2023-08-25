@@ -7,8 +7,11 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+
+// Custom Components
 import VendorDashboard from "./VendorDashboard";
 import CustomerDashboard from "./CustomerDashboard";
+import Homepage from "../Homepage/Homepage";
 
 export default function Dashboard() {
   // token check
@@ -36,9 +39,17 @@ export default function Dashboard() {
     });
 
   return (
-    <>
-      {userRole === "Vendor" && <VendorDashboard />}
-      {userRole === "Customer" && <CustomerDashboard />}
-    </>
+    <Router>
+      <Switch>
+        {!isAuthenticated && (
+          <>
+            <Route path="/" render={() => <Homepage />} />
+            <Redirect to="/" />
+          </>
+        )}
+        {userRole === "Vendor" && <VendorDashboard />}
+        {userRole === "Customer" && <CustomerDashboard />}
+      </Switch>
+    </Router>
   );
 }
