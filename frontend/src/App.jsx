@@ -1,10 +1,14 @@
 import "./App.css";
+
+// React Hooks
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
+  Redirect,
 } from "react-router-dom";
+
+// Custom Components
 import Navigation from "./components/Pages/Navigation/Navigation";
 import Homepage from "./components/Pages/Homepage/Homepage";
 import Footer from "./components/Pages/Footer/Footer";
@@ -12,6 +16,7 @@ import RestaurantRegister from "./components/Pages/RestaurantRegister/Restaurant
 import Dashboard from "./components/Pages/Dashboard/Dashboard";
 
 function App() {
+
   return (
     <>
       <Router>

@@ -15,4 +15,7 @@ def activate(request, uidb64, token):
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
-        return HttpResponseRedirect('http://localhost:5173/')
+        status = 'success'
+    else:
+        status = 'error'
+    return HttpResponseRedirect(f'http://localhost:5173/?activate={status}')
