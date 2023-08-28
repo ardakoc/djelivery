@@ -19,3 +19,18 @@ def activate(request, uidb64, token):
     else:
         status = 'error'
     return HttpResponseRedirect(f'http://localhost:5173/?activate={status}')
+
+def reset_password_validate(request, uidb64, token):
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = User._default_manager.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and default_token_generator.check_token(user, token):
+        user.password = "test"
+        user.save()
+        status = 'success'
+    else:
+        status = 'error'
+    return HttpResponseRedirect(f'http://localhost:5173/?reset-password={status}')
