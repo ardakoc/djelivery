@@ -53,7 +53,11 @@ class VendorSerializer(serializers.ModelSerializer):
             user_profile=user_profile,
             **validated_data
         )
-        utils.send_verification_email(user)
+        utils.send_email(
+            user,
+            subject='Welcome to Djelivery!',
+            template='account_verification_email.html'
+        )
         return vendor
 
 
