@@ -30,6 +30,8 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
+CURRENT_SITE = '127.0.0.1:8000'
+
 
 # Application definition
 

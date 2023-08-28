@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from accounts.models import User
 from vendor.models import Vendor
 from . import serializers, permissions as custom_permissions
+from mail import utils
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -124,4 +125,34 @@ class LogoutViewSet(viewsets.ViewSet):
         return Response(
             {'error': 'User is not authenticated'},
             status=status.HTTP_401_UNAUTHORIZED
+        )
+
+
+class ForgotPasswordViewSet(viewsets.ViewSet):
+    """
+    Send password reset link to the user's email.
+    """
+    permission_classes = [custom_permissions.IsAnonymousUser]
+
+    def get_view_name(self):
+        return "Forgot password api"
+
+    def create(self, request):
+        email = request.data.get('email')
+
+        if email == '':
+            return Response(
+                {'error': 'Please enter an email.'},status=status.HTTP_400_BAD_REQUEST)            
+
+        if User.objects.filter(email=email).exists():
+            user = User.objects.get(email__exact=email)
+
+            utils.send_password_reset_email(user)
+            return Response(
+                {'message': 'Password reset email is sent to the user.'},
+                status=status.HTTP_200_OK
+            )
+        return Response(
+            {'error': 'There is no user with email you entered, please check it.'},
+            status=status.HTTP_404_NOT_FOUND
         )
