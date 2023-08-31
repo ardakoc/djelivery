@@ -6,7 +6,6 @@ import {
   BrowserRouter as Router,
   Redirect,
 } from "react-router-dom";
-import axios from "axios";
 
 // Bootstrap Components
 import Form from "react-bootstrap/Form";
@@ -23,6 +22,9 @@ import FileUploadButton from "../Buttons/FileUploadButton";
 import InputLabelText from "../Texts/InputLabelText";
 import FormSectionTitle from "../Titles/FormSectionTitle";
 import Homepage from "../Pages/Homepage/Homepage";
+
+// API
+import api from '../../api.jsx';
 
 export default function RestaurantRegisterForm(props) {
   // token check
@@ -57,8 +59,8 @@ export default function RestaurantRegisterForm(props) {
       vendor_license: event.target.restaurant_license.files[0],
     };
 
-    await axios
-      .post("http://127.0.0.1:8000/api/v1/vendors/", restaurant)
+    await api
+      .post("/vendors/", restaurant)
       .then((response) => {
         setRestaurantSignedUp(true);
         props.success(restaurantSignedUp);

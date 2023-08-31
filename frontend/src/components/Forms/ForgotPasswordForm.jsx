@@ -1,5 +1,4 @@
 // React Hooks
-import axios from "axios";
 import { useState } from "react";
 
 // Bootstrap Components
@@ -14,6 +13,9 @@ import InputWithIcon from "../InputGroups/InputWithIcon";
 import Email from "../Icons/Email";
 import FormErrorText from "../Texts/FormErrorText";
 
+// API
+import api from '../../api.jsx';
+
 export default function ForgotPasswordForm(props) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [emailErrorMsg, setEmailErrorMsg] = useState("");
@@ -24,8 +26,8 @@ export default function ForgotPasswordForm(props) {
       email: event.target.email.value,
     };
 
-    await axios
-      .post("http://localhost:8000/api/v1/forgot-password/", data)
+    await api
+      .post("/forgot-password/", data)
       .then((response) => {
         setIsSubmitted(true);
       })

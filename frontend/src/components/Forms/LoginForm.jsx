@@ -1,5 +1,3 @@
-import axios from "axios";
-
 // Bootstrap Components
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
@@ -15,6 +13,9 @@ import ModalLink from "../Link/ModalLink";
 import FormErrorText from "../Texts/FormErrorText";
 import { useState } from "react";
 
+// API
+import api from '../../api.jsx';
+
 export default function LoginForm(props) {
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
 
@@ -25,8 +26,8 @@ export default function LoginForm(props) {
       password: event.target.password.value,
     };
 
-    await axios
-      .post("http://127.0.0.1:8000/api/v1/login/", user)
+    await api
+      .post("/v1/login/", user)
       .then((response) => {
         localStorage.setItem("token", response.data.token);
         window.location.reload(true)

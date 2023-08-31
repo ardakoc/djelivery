@@ -1,6 +1,5 @@
 // React Hooks
 import { useState } from "react";
-import axios from "axios";
 
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
@@ -22,6 +21,9 @@ import NavLogo from "./NavLogo";
 // Icons
 import Compass from "../../Icons/Compass";
 import Location from "../../Icons/Location/Location";
+
+// API
+import api from '../../../api.jsx';
 
 export default function Navigation() {
   // state definitions
@@ -72,8 +74,8 @@ export default function Navigation() {
 
   const handleLogout = async (event) => {
     event.preventDefault();
-    await axios
-      .post("http://127.0.0.1:8000/api/v1/logout/")
+    await api
+      .post("/logout/")
       .then((response) => {
         localStorage.removeItem("token");
         window.location.href = 'http://localhost:5173/'

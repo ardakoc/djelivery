@@ -1,6 +1,5 @@
 // React Hooks
 import { useState } from "react";
-import axios from "axios";
 
 // Bootstrap Components
 import Form from "react-bootstrap/Form";
@@ -17,6 +16,9 @@ import ModalLink from "../Link/ModalLink";
 import Name from "../Icons/Name";
 import Username from "../Icons/Username";
 import FormErrorText from "../Texts/FormErrorText";
+
+// API
+import api from '../../api.jsx';
 
 export default function RegisterForm(props) {
   const [firstNameErrorMsg, setfirstNameErrorMsg] = useState("");
@@ -36,8 +38,8 @@ export default function RegisterForm(props) {
       username: event.target.username.value,
       password: event.target.password.value,
     };
-    await axios
-      .post("http://127.0.0.1:8000/api/v1/users/", user)
+    await api
+      .post("/users/", user)
       .then((response) => {
         setSignedUp(true);
         props.success(signedUp)

@@ -14,11 +14,16 @@ export default function Homepage(props) {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const activationStatus = urlParams.get("activate");
+    const resetPasswordErrorStatus = urlParams.get("reset-password-error");
 
     if (activationStatus === "success") {
       setActivationMessage("Your user has been activated. You can login now.");
     } else if (activationStatus === "error") {
-      setActivationMessage("Your activation is not completed. Try again.");
+      setActivationMessage("The link has been expired!");
+    }
+    
+    if (resetPasswordErrorStatus === "error") {
+      setActivationMessage("The link has been expired!");
     }
   }, []);
 

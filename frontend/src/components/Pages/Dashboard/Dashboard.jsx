@@ -1,6 +1,5 @@
 // React Hooks
 import { useState } from "react";
-import axios from "axios";
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,6 +11,9 @@ import {
 import VendorDashboard from "./VendorDashboard";
 import CustomerDashboard from "./CustomerDashboard";
 import Homepage from "../Homepage/Homepage";
+
+// API
+import api from '../../../api.jsx';
 
 export default function Dashboard() {
   // token check
@@ -25,8 +27,8 @@ export default function Dashboard() {
   // state definitions
   const [userRole, setUserRole] = useState("");
 
-  axios
-    .get("http://127.0.0.1:8000/api/v1/user/current")
+  api
+    .get("/user/current")
     .then((response) => {
       if (response.data.role === 1) {
         setUserRole("Vendor");
