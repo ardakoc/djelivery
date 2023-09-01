@@ -3,7 +3,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
 from . import viewsets
-from mail import views
+from mail import views as mail_views
 
 router = DefaultRouter()
 router.register(r'users', viewsets.UserViewSet, basename='user')
@@ -16,13 +16,18 @@ router.register(
     viewsets.ForgotPasswordViewSet,
     basename='forgot_password'
 )
+router.register(
+    r'reset-password',
+    viewsets.ResetPasswordViewSet,
+    basename='reset_password'
+)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('activate/<uidb64>/<token>/', views.activate, name='activate'),
+    path('activate/<uidb64>/<token>/', mail_views.activate, name='activate'),
     path(
         'reset_password_validate/<uidb64>/<token>/',
-        views.reset_password_validate,
+        mail_views.reset_password_validate,
         name='reset_password_validate'
     ),
 ]

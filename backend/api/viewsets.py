@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.urls import resolve
+from django.core.exceptions import ObjectDoesNotExist, BadRequest
 
 from rest_framework import viewsets, mixins, status, permissions
 from rest_framework.authtoken.models import Token
@@ -113,6 +114,7 @@ class LogoutViewSet(viewsets.ViewSet):
         return "Logout api"
 
     def create(self, request):
+        print(request.session.get('uid'))
         user = request.user
         if request.user.is_authenticated:
             logout(request)
@@ -160,3 +162,41 @@ class ForgotPasswordViewSet(viewsets.ViewSet):
             {'error': 'There is no user with email you entered, please check it.'},
             status=status.HTTP_404_NOT_FOUND
         )
+
+
+class ResetPasswordViewSet(viewsets.ModelViewSet):
+    """
+    Authenticates users.
+    """
+    queryset = User.objects.all()
+    serializer_class = serializers.ResetPasswordSerializer
+    permission_classes = [custom_permissions.IsAnonymousUser]
+
+    def get_view_name(self):
+        return "Reset password api"
+
+    def list(self, request):
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    def create(self, request):
+        try:
+            pk = request.session.get('uid')
+            user = User.objects.get(pk=pk)
+            password = request.data.get('password')
+            user.set_password(password)
+            user.is_active = True
+            user.save()
+            return Response(
+                {'message': 'The password is successfully reset.'},
+                status=status.HTTP_200_OK
+            )
+        except ObjectDoesNotExist:
+            return Response(
+                {'error': 'The user is not exist.'},
+                status=status.HTTP_404_NOT_FOUND
+            )
+        except:
+            return Response(
+                {'error': 'There is an error occured.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )

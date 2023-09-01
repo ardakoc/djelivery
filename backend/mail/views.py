@@ -5,13 +5,16 @@ from django.shortcuts import HttpResponseRedirect
 
 User = get_user_model()
 
-def activate(request, uidb64, token):
+def decode_uid_and_get_user(request, uidb64):
     try:
         uid = urlsafe_base64_decode(uidb64).decode()
         user = User._default_manager.get(pk=uid)
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
+    return uid, user
 
+def activate(request, uidb64, token):
+    uid, user = decode_uid_and_get_user(request, uidb64)
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
@@ -20,17 +23,12 @@ def activate(request, uidb64, token):
         status = 'error'
     return HttpResponseRedirect(f'http://localhost:5173/?activate={status}')
 
-def reset_password_validate(request, uidb64, token):
-    try:
-        uid = urlsafe_base64_decode(uidb64).decode()
-        user = User._default_manager.get(pk=uid)
-    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
-        user = None
 
+def reset_password_validate(request, uidb64, token):
+    uid, user = decode_uid_and_get_user(request, uidb64)
     if user is not None and default_token_generator.check_token(user, token):
-        user.password = "test"
-        user.save()
+        request.session['uid'] = uid
         status = 'success'
-    else:
-        status = 'error'
-    return HttpResponseRedirect(f'http://localhost:5173/?reset-password={status}')
+        return HttpResponseRedirect(f'http://localhost:5173/reset-password')
+    status = 'error'
+    return HttpResponseRedirect(f'http://localhost:5173/?reset-password-error={status}')
