@@ -1,5 +1,6 @@
 // React Hooks
 import { useState } from "react";
+import axios from "axios";
 
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
@@ -74,8 +75,10 @@ export default function Navigation() {
 
   const handleLogout = async (event) => {
     event.preventDefault();
-    await api
-      .post("/logout/")
+    // await api
+    //   .post("/logout/")
+    await axios
+      .post("http://127.0.0.1:8000/api/v1/logout/")
       .then((response) => {
         localStorage.removeItem("token");
         window.location.href = 'http://localhost:5173/'

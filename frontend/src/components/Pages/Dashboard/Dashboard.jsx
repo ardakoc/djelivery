@@ -6,6 +6,7 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+import axios from "axios";
 
 // Custom Components
 import VendorDashboard from "./VendorDashboard";
@@ -27,8 +28,10 @@ export default function Dashboard() {
   // state definitions
   const [userRole, setUserRole] = useState("");
 
-  api
-    .get("/user/current")
+  // api
+  //   .get("/user/current")
+  axios
+    .get("http://127.0.0.1:8000/api/v1/user/current")
     .then((response) => {
       if (response.data.role === 1) {
         setUserRole("Vendor");

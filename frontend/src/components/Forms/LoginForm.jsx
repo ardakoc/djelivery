@@ -27,7 +27,7 @@ export default function LoginForm(props) {
     };
 
     await api
-      .post("/v1/login/", user)
+      .post("/login/", user)
       .then((response) => {
         localStorage.setItem("token", response.data.token);
         window.location.reload(true)
