@@ -178,3 +178,9 @@ input[type="checkbox"]:focus {
   border-top: 10px solid #ed1b24;
   border-bottom: 10px solid #ed1b24;
 }
+
+/* Vendor Dashboard */
+.list-group-item.active {
+  border-color: #3ab54b !important;
+  background-color: #e6fcf5 !important;
+}
