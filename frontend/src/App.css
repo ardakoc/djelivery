@@ -201,7 +201,6 @@ input[type="checkbox"]:focus {
   top: -22.5%;
   width: 100%; /* Tam genişlik */
   height: 100%;
-  z-index: 1;
 }
 
 .restaurant-details {
