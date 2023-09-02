@@ -1,3 +1,5 @@
+import Col from "react-bootstrap/esm/Col";
+import Row from "react-bootstrap/esm/Row";
 import ListGroup from "react-bootstrap/ListGroup";
 
 export default function VendorDashboardMenuItem(props) {
@@ -13,7 +15,11 @@ export default function VendorDashboardMenuItem(props) {
         borderRadius: "0",
       }}
     >
-      {props.title}
+      <Row>
+        <Col xs={2} sm={2}>{props.icon}</Col>
+        <Col xs={10} sm={9}>{props.title}</Col>
+      </Row>
+      
     </ListGroup.Item>
   );
 }

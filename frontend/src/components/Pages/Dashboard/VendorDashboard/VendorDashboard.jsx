@@ -19,7 +19,7 @@ export default function VendorDashboard() {
               <VendorDashboardMenu />
             </ListGroup>
           </Col>
-          <Col xs={10}>
+          <Col xs={12} sm={12} md={8} lg={9} xl={9} xxl={10}>
             <Tab.Content>
               <Tab.Pane eventKey="#link1">Tab pane content 1</Tab.Pane>
               <Tab.Pane eventKey="#link2">Tab pane content 2</Tab.Pane>
