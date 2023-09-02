@@ -30,15 +30,21 @@ class Vendor(models.Model):
             vendor = Vendor.objects.get(pk=self.pk)
             if vendor.is_approved != self.is_approved:
                 if self.is_approved == True:
-                    subject = 'Congratulations! Your restaurant has been approved.'
+                    self.set_approval_email_content(is_approved=True)
                 else:
-                    subject = "We're sorry! You are not eligible for publishing your \
-                        food menu on our marketplace."
-                template = 'admin_approval_email.html'
-                context = {
-                    'subject': subject,
-                    'user': self.user,
-                    'is_approved': self.is_approved,
-                }
-                utils.send_notification_email(self.user, subject, template, context)
+                    self.set_approval_email_content(is_approved=False)
+                
         return super(Vendor, self).save(*args, **kwargs)
+
+    def set_approval_email_content(self, is_approved):
+        if is_approved:
+            subject = 'Congratulations! Your restaurant has been approved.'
+        else:
+            subject = "We're sorry! You are not eligible for publishing your \
+                food menu on our marketplace."
+        template = 'admin_approval_email.html'
+        context = {
+            'user': self.user,
+            'is_approved': self.is_approved,
+        }
+        utils.send_notification_email(self.user, subject, template, context)
