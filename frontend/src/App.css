@@ -184,3 +184,26 @@ input[type="checkbox"]:focus {
   border-color: #3ab54b !important;
   background-color: #e6fcf5 !important;
 }
+
+.vendor-dashboard-cover {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 35vh;
+  position: relative;
+}
+
+.restaurant-info {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: -22.5%;
+  width: 100%; /* Tam genişlik */
+  height: 100%;
+  z-index: 1;
+}
+
+.restaurant-details {
+  color: #a8e9d5;
+}

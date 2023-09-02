@@ -12,7 +12,7 @@ export default function RestaurantLogo(props) {
         style={{
           width: props.width || "125px",
           height: props.height || "125px",
-          background: "none",
+          background: props.background || "none",
         }}
       >
         <Image
