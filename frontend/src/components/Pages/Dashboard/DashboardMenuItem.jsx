@@ -2,7 +2,7 @@ import Col from "react-bootstrap/esm/Col";
 import Row from "react-bootstrap/esm/Row";
 import ListGroup from "react-bootstrap/ListGroup";
 
-export default function VendorDashboardMenuItem(props) {
+export default function DashboardMenuItem(props) {
   return (
     <ListGroup.Item
       action

@@ -5,9 +5,10 @@ import { Container, Row, Col } from "react-bootstrap";
 
 // Custom Components
 import Logo from "../../../Logo/Logo";
-import CoverImage from "../../../../assets/img/vendor/cover-photo/cover-photo01.jpg";
+import CoverImage from "../../../../assets/img/users/cover_photos/freddy-castro-u3ajSXhZM_U-unsplash.jpg";
+import ProfilePhoto from "../../../../assets/img/users/profile_pictures/picofme.png"
 
-export default function VendorDashboardCover() {
+export default function CustomerDashboardCover() {
   return (
     <>
       <Col xs={12} className="text-center">
@@ -21,17 +22,17 @@ export default function VendorDashboardCover() {
       </Col>{" "}
       <Container>
         <Row>
-          <Col xs={12} className="restaurant-info">
+          <Col xs={12} className="customer-info">
             <Row>
               <Col xs={5} md={4}>
                 <Logo
-                  photo="https://upload.wikimedia.org/wikipedia/commons/2/2e/Burger_King_logo_2020.png"
+                  photo={ProfilePhoto}
                   background="#fff"
                 />
               </Col>
-              <Col xs={7} md={8} className="restaurant-details">
-                <h2>Restaurant Name</h2>
-                <p>Restaurant Address</p>
+              <Col xs={7} md={8} className="customer-details ps-4">
+                <h2>Name Surname</h2>
+                <p>+0 123 456 78 90</p>
               </Col>
             </Row>
           </Col>

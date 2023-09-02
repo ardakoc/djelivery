@@ -2,29 +2,29 @@
 import ListGroup from "react-bootstrap/ListGroup";
 
 // Custom Components
-import VendorDashboardMenuItem from "./VendorDashboardMenuItem";
+import DashboardMenuItem from "../../DashboardMenuItem";
 
 // Icons
-import DashboardIcon from "../../../../Icons/VendorDashboard/DashboardIcon";
-import EarningsIcon from "../../../../Icons/VendorDashboard/EarningsIcon";
-import MenuBuilderIcon from "../../../../Icons/VendorDashboard/MenuBuilderIcon";
-import MyRestaurantIcon from "../../../../Icons/VendorDashboard/MyRestaurantIcon";
-import OrdersIcon from "../../../../Icons/VendorDashboard/OrdersIcon";
-import StatementIcon from "../../../../Icons/VendorDashboard/StatementIcon";
-import ChangePasswordIcon from "../../../../Icons/VendorDashboard/ChangePasswordIcon";
-import LogoutIcon from "../../../../Icons/VendorDashboard/LogoutIcon";
+import DashboardIcon from "../../../../Icons/Dashboard/DashboardIcon";
+import EarningsIcon from "../../../../Icons/Dashboard/EarningsIcon";
+import MenuBuilderIcon from "../../../../Icons/Dashboard/MenuBuilderIcon";
+import MyRestaurantIcon from "../../../../Icons/Dashboard/MyRestaurantIcon";
+import OrdersIcon from "../../../../Icons/Dashboard/OrdersIcon";
+import StatementIcon from "../../../../Icons/Dashboard/StatementIcon";
+import ChangePasswordIcon from "../../../../Icons/Dashboard/ChangePasswordIcon";
+import LogoutIcon from "../../../../Icons/Dashboard/LogoutIcon";
 
 export default function VendorDashboardMenu() {
   return (
     <ListGroup defaultActiveKey="#link1">
-      <VendorDashboardMenuItem title="Dashboard" icon={<DashboardIcon />} href="#link1" />
-      <VendorDashboardMenuItem title="My Restaurant" icon={<MyRestaurantIcon />} href="#link2" />
-      <VendorDashboardMenuItem title="Menu Builder" icon={<MenuBuilderIcon />} href="#link3" />
-      <VendorDashboardMenuItem title="Orders" icon={<OrdersIcon />} href="#link4" />
-      <VendorDashboardMenuItem title="Earnings" icon={<EarningsIcon />} href="#link5" />
-      <VendorDashboardMenuItem title="Statement" icon={<StatementIcon />} href="#link6" />
-      <VendorDashboardMenuItem title="Change Password" icon={<ChangePasswordIcon />} href="#link7" />
-      <VendorDashboardMenuItem title="Logout" icon={<LogoutIcon />} href="#link8" />
+      <DashboardMenuItem title="Dashboard" icon={<DashboardIcon />} href="#link1" />
+      <DashboardMenuItem title="My Restaurant" icon={<MyRestaurantIcon />} href="#link2" />
+      <DashboardMenuItem title="Menu Builder" icon={<MenuBuilderIcon />} href="#link3" />
+      <DashboardMenuItem title="Orders" icon={<OrdersIcon />} href="#link4" />
+      <DashboardMenuItem title="Earnings" icon={<EarningsIcon />} href="#link5" />
+      <DashboardMenuItem title="Statement" icon={<StatementIcon />} href="#link6" />
+      <DashboardMenuItem title="Change Password" icon={<ChangePasswordIcon />} href="#link7" />
+      <DashboardMenuItem title="Logout" icon={<LogoutIcon />} href="#link8" />
     </ListGroup>
   );
 }

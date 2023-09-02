@@ -4,7 +4,7 @@ import Col from "react-bootstrap/esm/Col";
 import Row from "react-bootstrap/esm/Row";
 
 // Custom Components
-import RestaurantLogo from "./RestaurantLogo";
+import Logo from "../../../../Logo/Logo";
 
 // Icons
 import FavoriteFilled from "../../../../Icons/Favorite/FavoriteFilled";
@@ -18,7 +18,7 @@ export default function RestaurantCard(props) {
       <Row className="p-4">
         <Col className="text-center mb-4">
           <Row>
-            <RestaurantLogo
+            <Logo
               photo="https://upload.wikimedia.org/wikipedia/commons/2/2e/Burger_King_logo_2020.png"
               width="75px"
               height="75px"

@@ -185,7 +185,7 @@ input[type="checkbox"]:focus {
   background-color: #e6fcf5 !important;
 }
 
-.vendor-dashboard-cover {
+.dashboard-cover {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -194,7 +194,8 @@ input[type="checkbox"]:focus {
   position: relative;
 }
 
-.restaurant-info {
+.restaurant-info,
+.customer-info {
   display: flex;
   align-items: center;
   position: absolute;
@@ -203,6 +204,7 @@ input[type="checkbox"]:focus {
   height: 100%;
 }
 
-.restaurant-details {
+.restaurant-details,
+.customer-details {
   color: #a8e9d5;
 }

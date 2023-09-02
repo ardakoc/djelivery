@@ -3,7 +3,7 @@ import Col from "react-bootstrap/esm/Col";
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/esm/Button";
 
-export default function RestaurantLogo(props) {
+export default function Logo(props) {
   return (
     <Col>
       <Button
