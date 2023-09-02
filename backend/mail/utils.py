@@ -5,9 +5,8 @@ from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage
 from django.conf import settings
 
-def send_email(user, subject, template):
+def send_verification_email(user, subject, template):
     from_email = settings.DEFAULT_FROM_EMAIL
-    mail_subject = subject
     message = render_to_string(template, {
         'user': user,
         'domain': settings.CURRENT_SITE,
@@ -15,5 +14,12 @@ def send_email(user, subject, template):
         'token': default_token_generator.make_token(user),
     })
     to_email = [user.email]
-    mail = EmailMessage(mail_subject, message, from_email=from_email, to=to_email)
+    mail = EmailMessage(subject, message, from_email=from_email, to=to_email)
+    mail.send()
+
+def send_notification_email(user, subject, template, context):
+    from_email = settings.DEFAULT_FROM_EMAIL
+    message = render_to_string(template, context)
+    to_email = [user.email]
+    mail = EmailMessage(subject, message, from_email=from_email, to=to_email)
     mail.send()

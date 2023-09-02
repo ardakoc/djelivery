@@ -1,0 +1,12 @@
+{% autoescape off %}
+Hi {{user.first_name}},
+{% if is_approved %}
+Your restaurant has been approved! You can now publish your food menu in Djelivery marketplace.
+
+Have a good day!
+{% else %}
+We're sorry! Your restaurant has not been approved by Djelivery admins.
+
+For more details, please contact support@djelivery.com.
+{% endif %}
+{% endautoescape %}

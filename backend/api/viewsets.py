@@ -149,7 +149,7 @@ class ForgotPasswordViewSet(viewsets.ViewSet):
         if User.objects.filter(email=email).exists():
             user = User.objects.get(email__exact=email)
 
-            utils.send_email(
+            utils.send_verification_email(
                 user,
                 subject='Djelivery - Reset your password',
                 template='password_reset_email.html'
