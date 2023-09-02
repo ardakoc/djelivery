@@ -9,8 +9,8 @@ import {
 import axios from "axios";
 
 // Custom Components
-import VendorDashboard from "./VendorDashboard";
-import CustomerDashboard from "./CustomerDashboard";
+import VendorDashboard from "./VendorDashboard/VendorDashboard";
+import CustomerDashboard from "./CustomerDashboard/CustomerDashboard";
 import Homepage from "../Homepage/Homepage";
 
 // API
