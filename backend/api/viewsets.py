@@ -80,7 +80,7 @@ class CurrentVendorViewSet(viewsets.GenericViewSet,
     """
     Retrieves current vendor details.
     """
-    serializer_class = serializers.VendorUpdateSerializer
+    serializer_class = serializers.CurrentVendorSerializer
     permission_classes = [permissions.IsAuthenticated,]
 
     def get_view_name(self):
@@ -97,11 +97,6 @@ class CurrentVendorViewSet(viewsets.GenericViewSet,
 
     def get_queryset(self):
         return Vendor.objects.none()
-    
-    def update(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
-        return super().create(request, *args, **kwargs)
 
 
 class LoginViewSet(viewsets.ModelViewSet):

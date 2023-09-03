@@ -68,10 +68,10 @@ class VendorSerializer(serializers.ModelSerializer):
 class VendorProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
-        fields = ['profile_picture', 'cover_photo', 'adress_line_1', 'adress_line_2']
+        fields = ['profile_picture', 'cover_photo', 'address_line_1', 'address_line_2']
 
 
-class VendorUpdateSerializer(serializers.ModelSerializer):
+class CurrentVendorSerializer(serializers.ModelSerializer):
     user_profile = VendorProfileSerializer()
 
     class Meta:
@@ -96,13 +96,13 @@ class VendorUpdateSerializer(serializers.ModelSerializer):
             'cover_photo',
             user_profile.cover_photo
         )
-        user_profile.adress_line_1 = profile_data.get(
-            'adress_line_1',
-            user_profile.adress_line_1
+        user_profile.address_line_1 = profile_data.get(
+            'address_line_1',
+            user_profile.address_line_1
         )
-        user_profile.adress_line_2 = profile_data.get(
-            'adress_line_2',
-            user_profile.adress_line_2
+        user_profile.address_line_2 = profile_data.get(
+            'address_line_2',
+            user_profile.address_line_2
         )
         user_profile.save()
 
