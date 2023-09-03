@@ -22,9 +22,7 @@ export default function VendorDashboard() {
     .get("http://127.0.0.1:8000/api/v1/vendor/current")
     .then((response) => {
       setRestaurantName(response.data.vendor_name);
-      setRestaurantAddress(
-        `${response.data.user_profile.address_line_1} ${response.data.user_profile.address_line_2}`
-      );
+      setRestaurantAddress(response.data.user_profile.full_address);
     })
     .catch((error) => {
       console.log(error);

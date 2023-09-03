@@ -66,9 +66,14 @@ class VendorSerializer(serializers.ModelSerializer):
 
 
 class VendorProfileSerializer(serializers.ModelSerializer):
+    full_address = serializers.SerializerMethodField()
+
     class Meta:
         model = UserProfile
-        fields = ['profile_picture', 'cover_photo', 'address_line_1', 'address_line_2']
+        fields = ['profile_picture', 'cover_photo', 'address_line_1', 'address_line_2', 'full_address']
+
+    def get_full_address(self, obj):
+        return obj.full_address()
 
 
 class CurrentVendorSerializer(serializers.ModelSerializer):
