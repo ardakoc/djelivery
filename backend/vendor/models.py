@@ -11,7 +11,7 @@ class Vendor(models.Model):
         related_name='user_profile',
         on_delete=models.CASCADE
     )
-    vendor_name = models.CharField(max_length=100)
+    vendor_name = models.CharField(max_length=50)
     vendor_license = models.FileField(
         upload_to='vendor/licenses',
         blank=True,
