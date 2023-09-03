@@ -17,12 +17,16 @@ import VendorDashboardCover from "./VendorDashboardCover";
 export default function VendorDashboard() {
   const [restaurantName, setRestaurantName] = useState("");
   const [restaurantAddress, setRestaurantAddress] = useState("");
+  const [restaurantLogo, setRestaurantLogo] = useState("");
+  const [coverPhoto, setCoverPhoto] = useState("");
 
   axios
     .get("http://127.0.0.1:8000/api/v1/vendor/current")
     .then((response) => {
       setRestaurantName(response.data.vendor_name);
       setRestaurantAddress(response.data.user_profile.full_address);
+      setRestaurantLogo(response.data.user_profile.profile_picture);
+      setCoverPhoto(response.data.user_profile.cover_photo)
     })
     .catch((error) => {
       console.log(error);
@@ -31,8 +35,10 @@ export default function VendorDashboard() {
   return (
     <>
       <VendorDashboardCover
+        restaurantLogo={restaurantLogo}
         restaurantName={restaurantName}
         restaurantAddress={restaurantAddress}
+        coverPhoto={coverPhoto}
       />
       <Container>
         <Tab.Container defaultActiveKey="#link1">

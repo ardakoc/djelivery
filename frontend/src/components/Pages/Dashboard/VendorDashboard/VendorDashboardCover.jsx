@@ -5,7 +5,6 @@ import { Container, Row, Col, Table } from "react-bootstrap";
 
 // Custom Components
 import Logo from "../../../Logo/Logo";
-import CoverImage from "../../../../assets/img/vendor/cover-photo/cover-photo01.jpg";
 
 export default function VendorDashboardCover(props) {
   return (
@@ -15,7 +14,7 @@ export default function VendorDashboardCover(props) {
           className="dashboard-cover"
           style={{
             filter: "brightness(40%)",
-            backgroundImage: `url(${CoverImage})`,
+            backgroundImage: `url(${props.coverPhoto})`,
           }}
         ></div>
       </Col>{" "}
@@ -25,7 +24,7 @@ export default function VendorDashboardCover(props) {
             <tr>
               <td>
                 <Logo
-                  photo="https://upload.wikimedia.org/wikipedia/commons/2/2e/Burger_King_logo_2020.png"
+                  photo={props.restaurantLogo}
                   background="#fff"
                 />
               </td>
