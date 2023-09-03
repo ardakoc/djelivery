@@ -29,7 +29,7 @@ class UserViewSet(viewsets.ModelViewSet):
         return super().create(request, *args, **kwargs)
 
 
-class CurrentUserViewset(viewsets.GenericViewSet,
+class CurrentUserViewSet(viewsets.GenericViewSet,
                          mixins.RetrieveModelMixin,
                          mixins.UpdateModelMixin):
     """
@@ -69,6 +69,36 @@ class VendorViewSet(viewsets.ModelViewSet):
         return "Vendors api"
 
     def create(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+        return super().create(request, *args, **kwargs)
+
+
+class CurrentVendorViewSet(viewsets.GenericViewSet,
+                         mixins.RetrieveModelMixin,
+                         mixins.UpdateModelMixin):
+    """
+    Retrieves current vendor details.
+    """
+    serializer_class = serializers.VendorUpdateSerializer
+    permission_classes = [permissions.IsAuthenticated,]
+
+    def get_view_name(self):
+        return "Current vendor api"
+
+    def get_endpoint(self):
+        return resolve(self.request.path_info).kwargs['pk']
+
+    def get_object(self):
+        if self.get_endpoint() == 'current':
+            user = self.request.user
+            vendor = Vendor.objects.get(user=user)
+            return vendor
+
+    def get_queryset(self):
+        return Vendor.objects.none()
+    
+    def update(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
         return super().create(request, *args, **kwargs)

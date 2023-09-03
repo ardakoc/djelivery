@@ -65,6 +65,50 @@ class VendorSerializer(serializers.ModelSerializer):
         return vendor
 
 
+class VendorProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = ['profile_picture', 'cover_photo', 'adress_line_1', 'adress_line_2']
+
+
+class VendorUpdateSerializer(serializers.ModelSerializer):
+    user_profile = VendorProfileSerializer()
+
+    class Meta:
+        model = Vendor
+        fields = ['user_profile', 'vendor_name', 'vendor_license']
+
+    def update(self, instance, validated_data):
+        instance.vendor_name = validated_data.get('vendor_name', instance.vendor_name)
+        instance.vendor_license = validated_data.get(
+            'vendor_license',
+            instance.vendor_license
+        )
+        instance.save()
+
+        profile_data = validated_data.get('user_profile', {})
+        user_profile = instance.user_profile
+        user_profile.profile_picture = profile_data.get(
+            'profile_picture',
+            user_profile.profile_picture
+        )
+        user_profile.cover_photo = profile_data.get(
+            'cover_photo',
+            user_profile.cover_photo
+        )
+        user_profile.adress_line_1 = profile_data.get(
+            'adress_line_1',
+            user_profile.adress_line_1
+        )
+        user_profile.adress_line_2 = profile_data.get(
+            'adress_line_2',
+            user_profile.adress_line_2
+        )
+        user_profile.save()
+
+        return instance
+
+
 class LoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = User

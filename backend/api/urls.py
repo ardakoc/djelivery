@@ -7,8 +7,9 @@ from mail import views as mail_views
 
 router = DefaultRouter()
 router.register(r'users', viewsets.UserViewSet, basename='user')
-router.register(r'user', viewsets.CurrentUserViewset, basename='current_user')
+router.register(r'user', viewsets.CurrentUserViewSet, basename='current_user')
 router.register(r'vendors', viewsets.VendorViewSet, basename='vendor')
+router.register(r'vendor', viewsets.CurrentVendorViewSet, basename='current_vendor')
 router.register(r'login', viewsets.LoginViewSet, basename='login')
 router.register(r'logout', viewsets.LogoutViewSet, basename='logout')
 router.register(
