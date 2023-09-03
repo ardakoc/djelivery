@@ -1,3 +1,7 @@
+// React Hooks
+import { useState } from "react";
+import axios from "axios";
+
 // Bootstrap Components
 import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -11,9 +15,27 @@ import Container from "react-bootstrap/esm/Container";
 import VendorDashboardCover from "./VendorDashboardCover";
 
 export default function VendorDashboard() {
+  const [restaurantName, setRestaurantName] = useState("");
+  const [restaurantAddress, setRestaurantAddress] = useState("");
+
+  axios
+    .get("http://127.0.0.1:8000/api/v1/vendor/current")
+    .then((response) => {
+      setRestaurantName(response.data.vendor_name);
+      setRestaurantAddress(
+        `${response.data.user_profile.address_line_1} ${response.data.user_profile.address_line_2}`
+      );
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
   return (
     <>
-      <VendorDashboardCover />
+      <VendorDashboardCover
+        restaurantName={restaurantName}
+        restaurantAddress={restaurantAddress}
+      />
       <Container>
         <Tab.Container defaultActiveKey="#link1">
           <Row className="my-5 py-5">
