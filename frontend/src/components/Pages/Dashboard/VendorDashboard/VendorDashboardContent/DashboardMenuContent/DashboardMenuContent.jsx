@@ -1,6 +1,7 @@
 // Bootstrap Components
 import { Tab, Container, Card, Row, Col } from "react-bootstrap";
-import OverivewCard from "./OverviewCard";
+import OrdersTable from "./OrdersTable";
+import OverviewCard from "./OverviewCard";
 
 export default function DashboardMenuContent() {
   return (
@@ -13,22 +14,25 @@ export default function DashboardMenuContent() {
       </Container>
       <Container className="mx-4 pb-4">
         <Row>
-          <OverivewCard
+          <OverviewCard
             title="Total Orders"
             content="124"
             contentRoute="#total-orders"
           />
-          <OverivewCard
+          <OverviewCard
             title="Total Revenue"
             content="$3200"
             contentRoute="#total-revenue"
           />
-          <OverivewCard
+          <OverviewCard
             title="This Month"
             content="$165"
             contentRoute="#this-month"
           />
         </Row>
+      </Container>
+      <Container className="px-4">
+        <OrdersTable />
       </Container>
     </Tab.Pane>
   );

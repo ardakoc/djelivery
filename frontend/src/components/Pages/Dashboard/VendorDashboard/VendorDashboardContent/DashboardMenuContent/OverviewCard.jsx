@@ -1,6 +1,6 @@
 import { Card, Col } from "react-bootstrap";
 
-export default function OverivewCard(props) {
+export default function OverviewCard(props) {
   return (
     <Col className="me-5">
       <Card style={{ borderRadius: "0" }}>
