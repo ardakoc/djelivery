@@ -100,6 +100,17 @@ input[type="checkbox"]:focus {
   border: none !important;
 }
 
+.card-link {
+  font-weight: 500;
+  color: #3ab54b;
+  font-size: 22px;
+  text-decoration: none;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
 .size-125 {
   width: 125px !important;
   height: 125px !important;
@@ -209,7 +220,7 @@ input[type="checkbox"]:focus {
   border: none;
 }
 
-.restaurant-details h2, p,
-.customer-details h2, p {
+.restaurant-details > h2, .restaurant-details > p,
+.customer-details > h2, .customer-details > p {
   color: #a8e9d5;
 }

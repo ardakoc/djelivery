@@ -16,8 +16,8 @@ import LogoutIcon from "../../../../Icons/Dashboard/LogoutIcon";
 
 export default function VendorDashboardMenu() {
   return (
-    <ListGroup defaultActiveKey="#link1">
-      <DashboardMenuItem title="Dashboard" icon={<DashboardIcon />} href="#link1" />
+    <ListGroup defaultActiveKey="#overview">
+      <DashboardMenuItem title="Dashboard" icon={<DashboardIcon />} href="#overview" />
       <DashboardMenuItem title="My Restaurant" icon={<MyRestaurantIcon />} href="#link2" />
       <DashboardMenuItem title="Menu Builder" icon={<MenuBuilderIcon />} href="#link3" />
       <DashboardMenuItem title="Orders" icon={<OrdersIcon />} href="#link4" />

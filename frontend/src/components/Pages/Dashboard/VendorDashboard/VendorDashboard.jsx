@@ -41,7 +41,7 @@ export default function VendorDashboard() {
         coverPhoto={coverPhoto}
       />
       <Container>
-        <Tab.Container defaultActiveKey="#link1">
+        <Tab.Container defaultActiveKey="#overview">
           <Row className="my-5 py-5">
             <Col>
               <ListGroup>
@@ -50,14 +50,7 @@ export default function VendorDashboard() {
             </Col>
             <Col xs={12} sm={12} md={8} lg={9} xl={9} xxl={10}>
               <Tab.Content>
-                <Tab.Pane eventKey="#link1">Tab pane content 1</Tab.Pane>
-                <Tab.Pane eventKey="#link2">Tab pane content 2</Tab.Pane>
-                <Tab.Pane eventKey="#link3">Tab pane content 3</Tab.Pane>
-                <Tab.Pane eventKey="#link4">Tab pane content 4</Tab.Pane>
-                <Tab.Pane eventKey="#link5">Tab pane content 5</Tab.Pane>
-                <Tab.Pane eventKey="#link6">Tab pane content 6</Tab.Pane>
-                <Tab.Pane eventKey="#link7">Tab pane content 7</Tab.Pane>
-                <Tab.Pane eventKey="#link8">Tab pane content 8</Tab.Pane>
+                <VendorDashboardContent />
               </Tab.Content>
             </Col>
           </Row>
